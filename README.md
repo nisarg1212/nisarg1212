@@ -62,7 +62,9 @@ contact       -> how to reach me
 
 ## nisarg(1)
 
-```man
+```console
+$ man nisarg
+
 NISARG(1)                                                   User Commands                                                   NISARG(1)
 
 NAME
