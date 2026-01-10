@@ -51,12 +51,28 @@ Final-semester **B.Tech (Information Technology)** student focused on **Python**
 
 ```console
 $ help
+banner        -> ASCII header
 man nisarg(1) -> profile manual
 whoami        -> quick identity
+quest         -> polymath roadmap
 principles    -> how I build
 projects      -> proof of work
 toolchain     -> what I use
 contact       -> how to reach me
+```
+
+## $ banner
+
+```text
+ _   _ _                         
+| \ | (_)                        
+|  \| |_ ___  __ _ _ __ __ _     
+| . ` | / __|/ _` | '__/ _` |    
+| |\  | \__ \ (_| | | | (_| |    
+\_| \_/_|___/\__,_|_|  \__,_|    
+
+nisarg1212@github:~$ python -c "print('ship • learn • repeat')"
+ship • learn • repeat
 ```
 
 ## nisarg(1)
@@ -100,6 +116,30 @@ SEE ALSO
 	GitHub:    https://github.com/nisarg1212
 ```
 
+## $ quest
+
+```console
+$ cat polymath_roadmap.md
+
+GOAL
+	Become a polymath-style builder: depth in fundamentals, breadth in domains, output in projects.
+
+MAIN QUESTS
+	[ ] Master Python for production (APIs, tooling, testing, performance)
+	[ ] Full-stack fluency (frontend fundamentals + backend architecture)
+	[ ] AI practicality (data → model → eval → deployment)
+
+SIDE QUESTS
+	[ ] Read 20 great engineering writeups (notes + summaries)
+	[ ] Build 12 small tools (CLI, automation, scraping, integrations)
+	[ ] Improve communication (clean READMEs, short demos, clear PRs)
+
+RULES
+	- Output > hype
+	- Consistency beats intensity
+	- Every project ships with: run steps + screenshots + tradeoffs
+```
+
 ## $ quickview
 
 ```console
@@ -127,32 +167,6 @@ Become a polymath-style builder: deep fundamentals + broad curiosity.
 $ location
 _[city, country]_  (_[timezone]_) 
 ```
-
-## $ activity
-
-<!-- Everything below uses external images/services (safe to remove anytime). -->
-
-<div align="center">
-	<p>
-		<img alt="Trophies" src="https://github-profile-trophy.vercel.app/?username=nisarg1212&no-bg=true&no-frame=true&column=7" />
-	</p>
-
-	<p>
-		<img alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=nisarg1212&show_icons=true&hide_title=true&rank_icon=github" />
-		<img alt="GitHub streak" src="https://streak-stats.demolab.com?user=nisarg1212" />
-	</p>
-
-	<p>
-		<img alt="Activity graph" src="https://github-readme-activity-graph.vercel.app/graph?username=nisarg1212" />
-	</p>
-
-	<p>
-		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nisarg1212/nisarg1212/main/assets/snake/github-contribution-grid-snake-dark.svg" />
-			<img alt="Contribution snake" src="https://raw.githubusercontent.com/nisarg1212/nisarg1212/main/assets/snake/github-contribution-grid-snake.svg" />
-		</picture>
-	</p>
-</div>
 
 ## $ principles
 
@@ -196,6 +210,16 @@ If you’re short on time, start here:
 ```console
 $ open https://nisarg.is-a.dev
 $ open https://github.com/nisarg1212
+```
+
+## $ signal
+
+```console
+$ why_hire_me
+I don’t just “know tools” — I ship projects with clear docs, readable code, and a learning loop.
+
+$ what_i_want
+An internship/entry-level role where I can build, learn fast, and contribute end-to-end.
 ```
 
 Add one more “small but sharp” project when you’re ready:
