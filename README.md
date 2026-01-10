@@ -75,6 +75,8 @@ DESCRIPTION
 
 	I like shipping projects that connect UI → API → database, with clean commits and readable code.
 
+	North-star: become a polymath-style engineer — broad curiosity, strong fundamentals, real output.
+
 OPTIONS
 	--role
 		Primary target: internship / entry-level.
@@ -119,9 +121,35 @@ _[topic 1]_ + _[topic 2]_
 $ strengths
 _[APIs]_  _[automation]_  _[debugging]_  _[UI polish]_  _[data handling]_
 
+$ north_star
+Become a polymath-style builder: deep fundamentals + broad curiosity.
+
 $ location
 _[city, country]_  (_[timezone]_) 
 ```
+
+## $ activity
+
+<!-- Everything below uses external images/services (safe to remove anytime). -->
+
+<div align="center">
+	<p>
+		<img alt="Trophies" src="https://github-profile-trophy.vercel.app/?username=nisarg1212&no-bg=true&no-frame=true&column=7" />
+	</p>
+
+	<p>
+		<img alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=nisarg1212&show_icons=true&hide_title=true&rank_icon=github" />
+		<img alt="GitHub streak" src="https://streak-stats.demolab.com?user=nisarg1212" />
+	</p>
+
+	<p>
+		<img alt="Activity graph" src="https://github-readme-activity-graph.vercel.app/graph?username=nisarg1212" />
+	</p>
+
+	<p>
+		<img alt="Contribution snake" src="https://raw.githubusercontent.com/nisarg1212/nisarg1212/output/github-contribution-grid-snake.svg" />
+	</p>
+</div>
 
 ## $ principles
 
@@ -205,15 +233,3 @@ Prefer email for opportunities.
 - LinkedIn: https://www.linkedin.com/in/nisarg1212
 
 ---
-
-<details>
-<summary>Optional: stats</summary>
-
-These use external images. Keep them only if you like the look.
-
-<!--
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=nisarg1212&show_icons=true&hide_title=true&rank_icon=github)
-![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=nisarg1212&layout=compact)
--->
-
-</details>
