@@ -51,7 +51,6 @@ Final-semester **B.Tech (Information Technology)** student focused on **Python**
 
 ```console
 $ help
-banner        -> ASCII header
 man nisarg(1) -> profile manual
 whoami        -> quick identity
 quest         -> polymath roadmap
@@ -59,20 +58,6 @@ principles    -> how I build
 projects      -> proof of work
 toolchain     -> what I use
 contact       -> how to reach me
-```
-
-## $ banner
-
-```text
- _   _ _                         
-| \ | (_)                        
-|  \| |_ ___  __ _ _ __ __ _     
-| . ` | / __|/ _` | '__/ _` |    
-| |\  | \__ \ (_| | | | (_| |    
-\_| \_/_|___/\__,_|_|  \__,_|    
-
-nisarg1212@github:~$ python -c "print('ship • learn • repeat')"
-ship • learn • repeat
 ```
 
 ## nisarg(1)
