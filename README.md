@@ -1,249 +1,76 @@
-<!--
-Profile README for: nisarg1212
-
-Goal: Internship / entry-level roles.
-Theme: clean, confident, recruiter-friendly.
-
-How to finish this in 10 minutes:
-1) Replace placeholders in the “Fast facts” box.
-2) Add 3–5 real projects under “Proof of work”.
-3) Add LinkedIn + email (or a contact form).
-4) Pin the same projects on your GitHub profile.
--->
-
 <div align="center">
 
-# Nisarg
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Hi,%20I'm%20Nisarg!&fontColor=ffffff&fontSize=70&animation=fadeIn&fontAlignY=38&desc=Python%20Full-Stack%20Dev%20|%20AI%20Builder&descSize=20&descAlignY=60&descColor=fff" width="100%" alt="header" />
 
-Final-semester **B.Tech (Information Technology)** student focused on **Python**, **full-stack**, and **AI**.
-
-**Open to:** Internship / Entry-level roles
-
-<!-- Optional animated header (external image). Remove if you prefer static. -->
-<p>
-	<img
-		src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=800&center=true&vCenter=true&width=700&lines=Python+%2F+Full-stack+%2F+AI;Shipping+projects+with+clean+code+and+clear+docs;Looking+for+internship+%2F+entry-level+opportunities"
-		alt="Typing SVG"
-	/>
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=800&center=true&vCenter=true&width=700&lines=Building+robust+web+applications;Exploring+AI+and+automations;Shipping+code+that+matters;Always+learning+and+improving" alt="Typing SVG" />
 </p>
 
-<p>
-	<a href="https://nisarg.is-a.dev">Portfolio</a>
-	•
-	<a href="https://www.linkedin.com/in/nisarg1212">LinkedIn</a>
-	•
-	<a href="mailto:nisargbhatt48@gmail.com">Email</a>
-</p>
+<div align="center">
+  <a href="https://nisarg.is-a.dev" target="_blank">
+    <img src="https://img.shields.io/badge/Portfolio-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="Portfolio" />
+  </a>
+  <a href="https://www.linkedin.com/in/nisarg1212" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="mailto:nisargbhatt48@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+</div>
 
-<!-- Optional: quick tech strip (external images). Remove if you prefer pure text. -->
-<p>
-	<img alt="Python" src="https://img.shields.io/badge/Python-black?style=flat&logo=python" />
-	<img alt="Django" src="https://img.shields.io/badge/Django-black?style=flat&logo=django" />
-	<img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-black?style=flat&logo=javascript" />
-	<img alt="Git" src="https://img.shields.io/badge/Git-black?style=flat&logo=git" />
-</p>
+<br/>
 
 </div>
 
 ---
 
-## $ help
+### 🚀 About Me
 
-```console
-$ help
-man nisarg(1) -> profile manual
-whoami        -> quick identity
-quest         -> polymath roadmap
-principles    -> how I build
-projects      -> proof of work
-toolchain     -> what I use
-contact       -> how to reach me
-```
+I'm a final-semester B.Tech student passionate about building scalable web applications and integrating AI solutions. I focus on writing clean, maintainable code and solving real-world problems.
 
-## nisarg(1)
-
-```console
-$ man nisarg
-
-NISARG(1)                                                   User Commands                                                   NISARG(1)
-
-NAME
-	nisarg - final-sem IT student; Python/full-stack/AI builder
-
-SYNOPSIS
-	nisarg [--role internship|entry-level] [--focus python|full-stack|ai] [--work end-to-end] [--contact email]
-
-DESCRIPTION
-	A builder profile optimized for recruiters and collaborators.
-
-	I like shipping projects that connect UI → API → database, with clean commits and readable code.
-
-	North-star: become a polymath-style engineer — broad curiosity, strong fundamentals, real output.
-
-OPTIONS
-	--role
-		Primary target: internship / entry-level.
-
-	--focus
-		Python, full-stack, and AI (practical projects over buzzwords).
-
-	--work
-		Prefer: small iterations, clear docs, measurable improvements.
-
-	--contact
-		Email: nisargbhatt48@gmail.com
-		LinkedIn: https://www.linkedin.com/in/nisarg1212
-
-FILES
-	projects/
-		Worldperience02, Nisarg_Personal_Site, vibeai-tool-hub
-
-SEE ALSO
-	Portfolio: https://nisarg.is-a.dev
-	GitHub:    https://github.com/nisarg1212
-```
-
-## $ quest
-
-```console
-$ cat polymath_roadmap.md
-
-GOAL
-	Become a polymath-style builder: depth in fundamentals, breadth in domains, output in projects.
-
-MAIN QUESTS
-	[ ] Master Python for production (APIs, tooling, testing, performance)
-	[ ] Full-stack fluency (frontend fundamentals + backend architecture)
-	[ ] AI practicality (data → model → eval → deployment)
-
-SIDE QUESTS
-	[ ] Read 20 great engineering writeups (notes + summaries)
-	[ ] Build 12 small tools (CLI, automation, scraping, integrations)
-	[ ] Improve communication (clean READMEs, short demos, clear PRs)
-
-RULES
-	- Output > hype
-	- Consistency beats intensity
-	- Every project ships with: run steps + screenshots + tradeoffs
-```
-
-## $ quickview
-
-```console
-$ whoami
-Nisarg — final-sem B.Tech (Information Technology)
-
-$ interests
-Python | Full-stack | AI
-
-$ looking_for
-Internship / Entry-level (primary)  |  Freelance (later)
-
-$ currently_building
-_[one project you’re actively shipping]_
-
-$ currently_learning
-_[topic 1]_ + _[topic 2]_
-
-$ strengths
-_[APIs]_  _[automation]_  _[debugging]_  _[UI polish]_  _[data handling]_
-
-$ north_star
-Become a polymath-style builder: deep fundamentals + broad curiosity.
-
-$ location
-_[city, country]_  (_[timezone]_) 
-```
-
-## $ principles
-
-```console
-$ cat principles.txt
-1) Ship small, ship often.
-2) Keep it readable (names, structure, docs).
-3) Prefer simple systems over clever ones.
-4) Measure when it matters.
-```
-
-## Proof of work
-
-```console
-$ ls -1 projects/
-Worldperience02
-Nisarg_Personal_Site
-vibeai-tool-hub
-
-$ cat projects/Worldperience02
-Social platform for sharing experiences, with global chat + club communities.
-repo: https://github.com/nisarg1212/Worldperience02
-stack: Django • Python • HTML • CSS • JS
-proof: _[demo / screenshots]_ 
-
-$ cat projects/Nisarg_Personal_Site
-Personal site for blogs + links that builds my social presence.
-repo: https://github.com/nisarg1212/Nisarg_Personal_Site
-live: https://nisarg.is-a.dev
-stack: _[stack]_ 
-
-$ cat projects/vibeai-tool-hub
-AI tools discovery hub to find + organize tools fast (170+ listed).
-repo: https://github.com/nisarg1212/vibeai-tool-hub
-stack: _[stack]_ 
-proof: _[results / examples]_ 
-```
-
-If you’re short on time, start here:
-
-```console
-$ open https://nisarg.is-a.dev
-$ open https://github.com/nisarg1212
-```
-
-## $ signal
-
-```console
-$ why_hire_me
-I don’t just “know tools” — I ship projects with clear docs, readable code, and a learning loop.
-
-$ what_i_want
-An internship/entry-level role where I can build, learn fast, and contribute end-to-end.
-```
-
-Add one more “small but sharp” project when you’re ready:
-
-- **[Mini project](https://github.com/nisarg1212/REPO_NAME)** — _[one-sentence summary — add later]_  
-  Stack: _[stack]_ • Proof: _[link]_ 
-
-### What I optimize for
-
-- **Clarity**: readable code, sensible naming, clean architecture.
-- **Reliability**: basic tests, good error handling, reproducible steps.
-- **Finish**: projects with a demo, screenshots, or a clear “how to run”.
+- 🔭 I’m currently working on **Full-stack AI integrations**
+- 🌱 I’m constantly learning **Advanced Backend Architecture & System Design**
+- 💼 Open for **Internships & Entry-level Software Engineering roles**
 
 ---
 
-## $ toolchain
+### 🛠️ Tech Stack
 
-```console
-$ python --version
-_[your version]_ 
+<div align="center">
 
-$ stack --list
-python: _[FastAPI/Django/Flask]_  |  web: _[React/Next.js]_  |  db: _[Postgres/MySQL/MongoDB]_
-ai: _[NumPy/Pandas]_ _[scikit-learn/PyTorch]_  |  tooling: Git • Linux • Docker • CI/CD
-```
+| **Languages** | **Frontend** | **Backend** | **Tools & Cloud** |
+|:---:|:---:|:---:|:---:|
+| ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) <br> ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) | ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB) <br> ![HTML/CSS](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) | ![Django](https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=white) <br> ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi) | ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white) <br> ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white) |
 
-## Availability
-
-- Seeking: **Internship / entry-level** opportunities
-- Preferred work: _[on-site / hybrid / remote]_ 
-- Start date: _[month/year]_ 
-
-## Contact
-
-Prefer email for opportunities.
-
-- Email: nisargbhatt48@gmail.com
-- LinkedIn: https://www.linkedin.com/in/nisarg1212
+</div>
 
 ---
+
+### 📂 Top Projects
+
+| Project | Description | Tech Stack |
+| :--- | :--- | :--- |
+| **[Worldperience02](https://github.com/nisarg1212/Worldperience02)** | A social platform for sharing experiences with global chat and communities. | `Django` `Python` `WebSockets` |
+| **[VibeAI Tool Hub](https://github.com/nisarg1212/vibeai-tool-hub)** | An AI tools discovery hub listing 170+ tools to help users find the right AI for their needs. | `React` `Tailwind` `JSON` |
+| **[Personal Portfolio](https://nisarg.is-a.dev)** | My personal digital garden showcasing my projects, skills, and journey. | `React` `Vite` `CSS` |
+
+---
+
+### 📊 GitHub Stats
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=nisarg1212&show_icons=true&theme=radical&hide_border=true&count_private=true" height="180" alt="stats graph"  />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nisarg1212&layout=compact&theme=radical&hide_border=true" height="180" alt="languages graph"  />
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="assets/snake/github-contribution-grid-snake-dark.svg" width="100%" alt="snake animation" />
+</div>
+
+---
+
+<div align="center">
+  <p><i>Let's build something amazing together!</i></p>
+</div>
