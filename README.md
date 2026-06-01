@@ -1,10 +1,6 @@
 <div align="center">
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Hi,%20I'm%20Nisarg!&fontColor=ffffff&fontSize=70&animation=fadeIn&fontAlignY=38&desc=Python%20Full-Stack%20Dev%20|%20AI%20Builder&descSize=20&descAlignY=60&descColor=fff" width="100%" alt="header" />
-
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=800&center=true&vCenter=true&width=700&lines=Building+robust+web+applications;Exploring+AI+and+automations;Shipping+code+that+matters;Always+learning+and+improving" alt="Typing SVG" />
-</p>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Hi,%20I'm%20Nisarg!&fontColor=ffffff&fontSize=70&animation=fadeIn&fontAlignY=38&desc=Programmer |%20Python, Django, AI%&descSize=20&descAlignY=60&descColor=fff" width="100%" alt="header" />
 
 <div align="center">
   <a href="https://nisarg.is-a.dev" target="_blank">
@@ -26,11 +22,11 @@
 
 ### 🚀 About Me
 
-I'm a final-semester B.Tech student passionate about building scalable web applications and integrating AI solutions. I focus on writing clean, maintainable code and solving real-world problems.
+I find interest in creative problem solving at scale. 
 
-- 🔭 I’m currently working on **Full-stack AI integrations**
+- 🔭 I’m currently working on **A system  that acurately predicts your life after 5 years.**
 - 🌱 I’m constantly learning **Advanced Backend Architecture & System Design**
-- 💼 Open for **Internships & Entry-level Software Engineering roles**
+- 💼 Open for **Entry-level Software Engineering roles**
 
 ---
 
@@ -50,8 +46,8 @@ I'm a final-semester B.Tech student passionate about building scalable web appli
 
 | Project | Description | Tech Stack |
 | :--- | :--- | :--- |
-| **[Worldperience02](https://github.com/nisarg1212/Worldperience02)** | A social platform for sharing experiences with global chat and communities. | `Django` `Python` `WebSockets` |
-| **[VibeAI Tool Hub](https://github.com/nisarg1212/vibeai-tool-hub)** | An AI tools discovery hub listing 170+ tools to help users find the right AI for their needs. | `React` `Tailwind` `JSON` |
+| **[Worldperience02](https://worldperience.me)** | A social platform for sharing experiences with global chat and communities. | `Django` `Python` `WebSockets` |
+| **[StackX](https://stackxapp.com)** | Where finding right AI workflows and systems becomes easy. | `React` `Tailwind` `JSON` |
 | **[Personal Portfolio](https://nisarg.is-a.dev)** | My personal digital garden showcasing my projects, skills, and journey. | `React` `Vite` `CSS` |
 
 ---
@@ -72,5 +68,5 @@ I'm a final-semester B.Tech student passionate about building scalable web appli
 ---
 
 <div align="center">
-  <p><i>Let's build something amazing together!</i></p>
+  <p><i>Let's build something intresting!</i></p>
 </div>
