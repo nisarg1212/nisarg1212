@@ -62,6 +62,14 @@ I find interest in creative problem solving at scale.
 <br/>
 
 <div align="center">
+  <h3>🏙️ My GitHub City</h3>
+  <p><i>A 3D visualization of my contributions (Run the Action to generate!)</i></p>
+  <img src="profile-3d-contrib/profile-night-view.svg" width="100%" alt="isometric 3D city" />
+</div>
+
+<br/>
+
+<div align="center">
   <img src="assets/snake/github-contribution-grid-snake-dark.svg" width="100%" alt="snake animation" />
 </div>
 
