@@ -22,10 +22,13 @@ jobs:
       - name: Generate Desk SVG
         run: python live_desk.py
 
+      - name: Generate Sci-Fi ID Badge
+        run: python id_badge.py
+
       - name: Commit and Push Update
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add live_desk.svg
-          git commit -m "Update live desk SVG" || exit 0
+          git add live_desk.svg id_badge.svg
+          git commit -m "Update profile SVGs (Desk & Badge)" || exit 0
           git push
