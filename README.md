@@ -52,25 +52,10 @@ I find interest in creative problem solving at scale.
 
 ---
 
-### 📊 GitHub Stats
+### 🏙️ My GitHub City
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=nisarg1212&show_icons=true&theme=radical&hide_border=true&count_private=true" height="180" alt="stats graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nisarg1212&layout=compact&theme=radical&hide_border=true" height="180" alt="languages graph"  />
-</div>
-
-<br/>
-
-<div align="center">
-  <h3>🏙️ My GitHub City</h3>
-  <p><i>A 3D visualization of my contributions (Run the Action to generate!)</i></p>
   <img src="profile-3d-contrib/profile-night-view.svg" width="100%" alt="isometric 3D city" />
-</div>
-
-<br/>
-
-<div align="center">
-  <img src="assets/snake/github-contribution-grid-snake-dark.svg" width="100%" alt="snake animation" />
 </div>
 
 ---
