@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Hi,%20I'm%20Nisarg!&fontColor=ffffff&fontSize=70&animation=fadeIn&fontAlignY=38&desc=Programmer |%20Python, Django, AI%&descSize=20&descAlignY=60&descColor=fff" width="100%" alt="header" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Hi,%20I'm%20Nisarg!&fontColor=ffffff&fontSize=70&animation=fadeIn&fontAlignY=38&desc=Programmer%20|%20Python,%20Django,%20AI&descSize=20&descAlignY=60&descColor=fff" width="100%" alt="header" />
 
 <div align="center">
   <a href="https://nisarg.is-a.dev" target="_blank">
