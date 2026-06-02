@@ -22,9 +22,9 @@
 
 ### 🚀 About Me
 
-I find interest in creative problem solving at scale. 
+I find interest in creative problem solving at scale.
 
-- 🔭 I’m currently working on **A system  that acurately predicts your life after 5 years.**
+- 🔭 I’m currently working on **A system that acurately predicts your life after 5 years.**
 - 🌱 I’m constantly learning **Advanced Backend Architecture & System Design**
 - 💼 Open for **Entry-level Software Engineering roles**
 
@@ -34,8 +34,8 @@ I find interest in creative problem solving at scale.
 
 <div align="center">
 
-| **Languages** | **Frontend** | **Backend** | **Tools & Cloud** |
-|:---:|:---:|:---:|:---:|
+|                                                                                               **Languages**                                                                                                |                                                                                         **Frontend**                                                                                         |                                                                                    **Backend**                                                                                    |                                                                                   **Tools & Cloud**                                                                                   |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) <br> ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) | ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB) <br> ![HTML/CSS](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) | ![Django](https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=white) <br> ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi) | ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white) <br> ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white) |
 
 </div>
@@ -44,11 +44,11 @@ I find interest in creative problem solving at scale.
 
 ### 📂 Top Projects
 
-| Project | Description | Tech Stack |
-| :--- | :--- | :--- |
-| **[Worldperience02](https://worldperience.me)** | A social platform for sharing experiences with global chat and communities. | `Django` `Python` `WebSockets` |
-| **[StackX](https://stackxapp.com)** | Where finding right AI workflows and systems becomes easy. | `React` `Tailwind` `JSON` |
-| **[Personal Portfolio](https://nisarg.is-a.dev)** | My personal digital garden showcasing my projects, skills, and journey. | `React` `Vite` `CSS` |
+| Project                                           | Description                                                                 | Tech Stack                     |
+| :------------------------------------------------ | :-------------------------------------------------------------------------- | :----------------------------- |
+| **[Worldperience02](https://worldperience.me)**   | A social platform for sharing experiences with global chat and communities. | `Django` `Python` `WebSockets` |
+| **[StackX](https://stackxapp.com)**               | Where finding right AI workflows and systems becomes easy.                  | `React` `Tailwind` `JSON`      |
+| **[Personal Portfolio](https://nisarg.is-a.dev)** | My personal digital garden showcasing my projects, skills, and journey.     | `React` `Vite` `CSS`           |
 
 ---
 
