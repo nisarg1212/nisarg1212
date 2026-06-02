@@ -52,6 +52,19 @@ I find interest in creative problem solving at scale.
 
 ---
 
+### ♟️ Play Chess Against My Repo's AI!
+
+<div align="center">
+  <p><i>Make a move by opening an issue! A Python script hosted on GitHub Actions handles logic and responds.</i></p>
+  <img src="chess_board.svg" width="400" alt="Chess Board" />
+  <br/><br/>
+  <a href="https://github.com/nisarg1212/nisarg1212/issues/new?title=Chess+Move:+e2e4&body=Replace+e2e4+in+the+title+with+your+move+in+UCI+format+(e.g.,+b2b3,+g8f6).+Submit+the+issue+to+play!">
+    <img src="https://img.shields.io/badge/Make%20A%20Move!-Play%20Now-success?style=for-the-badge&logo=github" alt="Play Chess" />
+  </a>
+</div>
+
+---
+
 ### 🏙️ My GitHub City
 
 <div align="center">

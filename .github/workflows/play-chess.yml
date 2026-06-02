@@ -1,0 +1,45 @@
+name: GitHub Chess Engine
+
+on:
+  issues:
+    types: [opened] # Triggers when someone opens an issue
+  workflow_dispatch: # Allows manual trigger to generate the initial board
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  play:
+    runs-on: ubuntu-latest
+    # Only run if the issue title starts with "Chess Move:" or if manually triggered
+    if: startsWith(github.event.issue.title, 'Chess Move:') || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python Chess
+        run: pip install chess
+
+      - name: Run Custom Chess Engine
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: python play_chess.py
+
+      - name: Close Issue Automatically
+        if: github.event_name == 'issues'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh issue close ${{ github.event.issue.number }} --comment "Move processed successfully! The AI has responded. Check the README to see the updated board."
+
+      - name: Commit and Push Board Updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add chess_board.fen chess_board.svg
+          git commit -m "chess: update board state" || exit 0
+          git push
