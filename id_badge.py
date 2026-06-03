@@ -62,7 +62,7 @@ def generate_badge():
   <text x="60" y="80" font-family="'Courier New', monospace" font-size="14" fill="#00ffcc" font-weight="bold" letter-spacing="2" filter="url(#glow)">>_ UPLINK ESTABLISHED</text>
   
   <text x="60" y="125" font-family="'Courier New', monospace" font-size="42" fill="#f8fafc" font-weight="bold" letter-spacing="4">{name.upper()}</text>
-  <text x="65" y="155" font-family="'Courier New', monospace" font-size="16" fill="#94a3b8" letter-spacing="3">PROBLEM SOLVER |amp; PROGRAMMER</text>
+  <text x="65" y="155" font-family="'Courier New', monospace" font-size="16" fill="#94a3b8" letter-spacing="3">PROBLEM SOLVER | PROGRAMMER</text>
 
   <!-- Connecting Lines -->
   <line x1="65" y1="180" x2="350" y2="180" stroke="#00ffcc" stroke-width="1" opacity="0.4" />
