@@ -25,7 +25,7 @@
 I find interest in creative problem solving at scale.
 
 - 🔭 I’m currently working on **A system that acurately predicts your life after 5 years.**
-- 🌱 I’m constantly learning **Advanced Backend Architecture & System Design**
+- 🌱 I’m constantly learning **More Python plus Advanced Backend Architecture & some AI concepts.**
 - 💼 Open for **Entry-level Software Engineering roles**
 
 ---
