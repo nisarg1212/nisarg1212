@@ -23,13 +23,13 @@
   <path d="M 775 195 L 775 225 L 745 225" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
 
   <!-- Decorative Hex / Coordinates -->
-  <text x="35" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SYS.INIT. 2026-06-03T16:24:47Z</text>
-  <text x="640" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SEC-CLR: Lvl 2232 // V.1.0</text>
+  <text x="35" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SYS.INIT. 2026-06-03T20:14:31Z</text>
+  <text x="640" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SEC-CLR: Lvl 1460 // V.1.0</text>
 
   <!-- Main Data Display -->
   <text x="60" y="80" font-family="'Courier New', monospace" font-size="14" fill="#00ffcc" font-weight="bold" letter-spacing="2" filter="url(#glow)">>_ UPLINK ESTABLISHED</text>
   
-  <text x="60" y="125" font-family="'Courier New', monospace" font-size="42" fill="#f8fafc" font-weight="bold" letter-spacing="4">NISARG</text>
+  <text x="60" y="125" font-family="'Courier New', monospace" font-size="42" fill="#f8fafc" font-weight="bold" letter-spacing="4">NISARG BHATT</text>
   <text x="65" y="155" font-family="'Courier New', monospace" font-size="16" fill="#94a3b8" letter-spacing="3">PROBLEM SOLVER | PROGRAMMER</text>
 
   <!-- Connecting Lines -->
