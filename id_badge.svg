@@ -23,7 +23,7 @@
   <path d="M 775 195 L 775 225 L 745 225" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
 
   <!-- Decorative Hex / Coordinates -->
-  <text x="35" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SYS.INIT. 2026-06-04T11:01:16Z</text>
+  <text x="35" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SYS.INIT. 2026-06-04T14:44:04Z</text>
   <text x="640" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SEC-CLR: Lvl 1460 // V.1.0</text>
 
   <!-- Main Data Display -->
