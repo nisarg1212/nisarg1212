@@ -2,6 +2,8 @@ import urllib.request
 import json
 
 def generate_badge():
+    # We don't need active stats for this ultra-minimalist typographic layout,
+    # but we run the request to keep the script structure identical.
     url = "https://api.github.com/users/nisarg1212"
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     
@@ -9,78 +11,46 @@ def generate_badge():
         with urllib.request.urlopen(req) as response:
             user_data = json.loads(response.read().decode())
     except Exception:
-        user_data = {"name": "Nisarg Bhatt", "login": "nisarg1212", "public_repos": 27, "followers": 0}
+        pass
 
-    # Maintain original level math
-    level = (user_data.get("public_repos", 0) * 10) + user_data.get("followers", 0) + 1200
-    repos = user_data.get('public_repos', 0)
-    
-    name = user_data.get('name', 'Nisarg Bhatt')
-    if not name: name = "Nisarg Bhatt"
-    
-    svg = f"""<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+    svg = """<svg width="800" height="120" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Background Linear Gradient -->
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0b0f19" />
-      <stop offset="50%" stop-color="#111827" />
-      <stop offset="100%" stop-color="#1e1b4b" />
+    <!-- Text Color Gradient -->
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c084fc" /> <!-- soft violet -->
+      <stop offset="100%" stop-color="#22d3ee" /> <!-- vibrant cyan -->
     </linearGradient>
 
-    <!-- Glowing Orb Blur -->
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="30" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap');
-      .name-text {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 34px; font-weight: 800; fill: #ffffff; letter-spacing: -0.5px; }}
-      .tagline-text {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 15px; font-weight: 500; fill: #22d3ee; letter-spacing: 0.5px; opacity: 0.95; }}
-      .status-pill {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 10px; font-weight: 700; fill: #10b981; letter-spacing: 1.5px; }}
-      .sub-text {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #475569; letter-spacing: 2px; }}
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&amp;family=Plus+Jakarta+Sans:wght@500&amp;display=swap');
+      .name-text {
+        font-family: 'Cinzel', serif;
+        font-size: 38px;
+        font-weight: 700;
+        fill: url(#text-grad);
+        letter-spacing: 6px;
+      }
+      .title-text {
+        font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        fill: #64748b;
+        letter-spacing: 4px;
+      }
     </style>
   </defs>
 
-  <!-- Background Rect -->
-  <rect width="800" height="200" fill="url(#bg-grad)" rx="10" />
-
-  <!-- Ambient Glowing Orbs in the Background -->
-  <circle cx="700" cy="50" r="80" fill="#06b6d4" opacity="0.15" filter="url(#glow)" />
-  <circle cx="100" cy="180" r="100" fill="#4f46e5" opacity="0.15" filter="url(#glow)" />
-
-  <!-- Animated Wave 1 (Back wave, slower) -->
-  <path d="M 0 160 Q 200 130, 400 160 T 800 160 L 800 200 L 0 200 Z" fill="#1e293b" opacity="0.3">
-    <animate attributeName="d" 
-             values="M 0 160 Q 200 130, 400 160 T 800 160 L 800 200 L 0 200 Z;
-                     M 0 160 Q 200 185, 400 160 T 800 160 L 800 200 L 0 200 Z;
-                     M 0 160 Q 200 130, 400 160 T 800 160 L 800 200 L 0 200 Z" 
-             dur="12s" repeatCount="indefinite" />
-  </path>
-
-  <!-- Animated Wave 2 (Front wave, faster) -->
-  <path d="M 0 170 Q 200 185, 400 170 T 800 170 L 800 200 L 0 200 Z" fill="#0f172a" opacity="0.6">
-    <animate attributeName="d" 
-             values="M 0 170 Q 200 185, 400 170 T 800 170 L 800 200 L 0 200 Z;
-                     M 0 170 Q 200 155, 400 170 T 800 170 L 800 200 L 0 200 Z;
-                     M 0 170 Q 200 185, 400 170 T 800 170 L 800 200 L 0 200 Z" 
-             dur="8s" repeatCount="indefinite" />
-  </path>
-
-  <!-- Left Side content -->
-  <g transform="translate(50, 0)">
-    <!-- Status Indicator -->
-    <text x="0" y="55" class="status-pill">● ACTIVE DEVELOPER</text>
-    
+  <!-- Centered Luxury Typography -->
+  <g transform="translate(400, 50)">
     <!-- Name -->
-    <text x="0" y="92" class="name-text">{name}</text>
+    <text x="0" y="0" text-anchor="middle" class="name-text">NISARG BHATT</text>
     
-    <!-- Tagline -->
-    <text x="0" y="118" class="tagline-text">Backend Architect &amp; Software Engineer</text>
+    <!-- Divider Line -->
+    <line x1="-150" y1="16" x2="150" y2="16" stroke="#334155" stroke-width="1" opacity="0.6" />
+    
+    <!-- Title -->
+    <text x="0" y="38" text-anchor="middle" class="title-text">PROBLEM SOLVER  •  SOFTWARE ENGINEER</text>
   </g>
-
-  <!-- Right Side content (aligned at y=55 to balance the status pill) -->
-  <text x="750" y="55" text-anchor="end" class="sub-text">LEVEL {level}  •  {repos} REPOSITORIES</text>
 </svg>"""
 
     with open("id_badge.svg", "w", encoding="utf-8") as f:
@@ -88,6 +58,7 @@ def generate_badge():
 
 if __name__ == "__main__":
     generate_badge()
+
 
 
 
