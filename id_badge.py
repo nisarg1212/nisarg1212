@@ -18,95 +18,58 @@ def generate_badge():
     name = user_data.get('name', 'Nisarg Bhatt')
     if not name: name = "Nisarg Bhatt"
     
-    # Calculate progress width (max level target is 2500)
-    progress_percent = min(1.0, level / 2500.0)
-    progress_width = int(progress_percent * 440)
-    
-    svg = f"""<svg width="800" height="150" viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg">
+    svg = f"""<svg width="800" height="180" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <!-- Radial Gradients with drifting animations -->
+    <radialGradient id="orb-blue" cx="30%" cy="40%" r="60%">
+      <animate attributeName="cx" values="30%;45%;30%" dur="14s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="40%;60%;40%" dur="14s" repeatCount="indefinite" />
+      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#2563eb" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="orb-violet" cx="70%" cy="60%" r="60%">
+      <animate attributeName="cx" values="70%;55%;70%" dur="18s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="60%;40%;60%" dur="18s" repeatCount="indefinite" />
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="orb-indigo" cx="50%" cy="50%" r="50%">
+      <animate attributeName="cx" values="50%;60%;50%" dur="22s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="50%;30%;50%" dur="22s" repeatCount="indefinite" />
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0" />
+    </radialGradient>
+
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
-      .card-bg {{ fill: #0b0f19; stroke: #1e293b; stroke-width: 1.5; }}
-      .track-title {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 20px; font-weight: 800; fill: #ffffff; letter-spacing: -0.3px; }}
-      .artist-name {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 13px; font-weight: 500; fill: #94a3b8; }}
-      .album-name {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 11px; font-weight: 500; fill: #64748b; }}
-      .time-text {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #475569; }}
-      .now-playing {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 9px; font-weight: 700; fill: #10b981; letter-spacing: 1.5px; }}
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&amp;display=swap');
+      .card-bg {{ fill: #030712; stroke: #1e293b; stroke-width: 1.2; }}
+      .name-text {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 34px; font-weight: 800; fill: #ffffff; letter-spacing: 2px; }}
+      .title-text {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 13px; font-weight: 500; fill: #22d3ee; letter-spacing: 3px; opacity: 0.95; }}
+      .stats-text {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #475569; letter-spacing: 2px; }}
     </style>
   </defs>
 
   <!-- Card Background -->
-  <rect width="800" height="150" rx="12" class="card-bg" />
+  <rect width="800" height="180" rx="10" class="card-bg" />
 
-  <!-- Album Art: Spinning Vinyl -->
-  <g transform="translate(20, 20)">
-    <!-- Outer Cover Shadow -->
-    <rect width="110" height="110" rx="8" fill="#1e1b4b" />
+  <!-- Ambient Pulsing Orbs -->
+  <rect width="800" height="180" fill="url(#orb-blue)" rx="10" />
+  <rect width="800" height="180" fill="url(#orb-violet)" rx="10" />
+  <rect width="800" height="180" fill="url(#orb-indigo)" rx="10" />
+
+  <!-- Centered Typographic Info -->
+  <g transform="translate(400, 85)">
+    <!-- Name -->
+    <text x="0" y="-5" text-anchor="middle" class="name-text">NISARG BHATT</text>
     
-    <!-- Vinyl Disc -->
-    <g>
-      <circle cx="55" cy="55" r="46" fill="#090d16" stroke="#1e293b" stroke-width="1.5" />
-      <circle cx="55" cy="55" r="38" fill="none" stroke="#1e293b" stroke-dasharray="12 6" />
-      <circle cx="55" cy="55" r="30" fill="none" stroke="#1e293b" stroke-dasharray="8 4" />
-      <circle cx="55" cy="55" r="22" fill="none" stroke="#1e293b" stroke-dasharray="6 3" />
-      
-      <!-- Label Center -->
-      <circle cx="55" cy="55" r="14" fill="#10b981" />
-      <!-- Center Hole -->
-      <circle cx="55" cy="55" r="4" fill="#0b0f19" />
-      
-      <!-- Tiny record lines indicating spin -->
-      <line x1="55" y1="41" x2="55" y2="45" stroke="#0b0f19" stroke-width="2" />
-      <line x1="55" y1="65" x2="55" y2="69" stroke="#0b0f19" stroke-width="2" />
-      
-      <animateTransform attributeName="transform" type="rotate" from="0 55 55" to="360 55 55" dur="8s" repeatCount="indefinite" />
-    </g>
+    <!-- Title -->
+    <text x="0" y="26" text-anchor="middle" class="title-text">PROBLEM SOLVER  •  SOFTWARE ENGINEER</text>
   </g>
 
-  <!-- Track Info -->
-  <text x="150" y="38" class="now-playing">NOW PLAYING</text>
-  <text x="150" y="62" class="track-title">{name}</text>
-  <text x="150" y="83" class="artist-name">Backend Architect &amp; Software Engineer</text>
-  <text x="150" y="102" class="album-name">Level {level} // {repos} Repositories</text>
-
-  <!-- Progress Bar -->
-  <!-- Track line -->
-  <rect x="150" y="116" width="440" height="4" rx="2" fill="#1e293b" />
-  <!-- Active progress line -->
-  <rect x="150" y="116" width="{progress_width}" height="4" rx="2" fill="#10b981" />
-  
-  <!-- Progress Indicators -->
-  <text x="150" y="134" class="time-text">Level {level}</text>
-  <text x="590" y="134" class="time-text" text-anchor="end">Level 2500</text>
-
-  <!-- Animated Equalizer Visualizer (Right Side) -->
-  <g transform="translate(680, 0)">
-    <!-- Bar 1 -->
-    <rect x="0" y="80" width="4" height="25" rx="2" fill="#10b981">
-      <animate attributeName="height" values="25;55;15;45;25" dur="1.5s" repeatCount="indefinite" />
-      <animate attributeName="y" values="80;50;90;60;80" dur="1.5s" repeatCount="indefinite" />
-    </rect>
-    <!-- Bar 2 -->
-    <rect x="8" y="65" width="4" height="40" rx="2" fill="#10b981">
-      <animate attributeName="height" values="40;15;60;30;40" dur="1.1s" repeatCount="indefinite" />
-      <animate attributeName="y" values="65;90;45;75;65" dur="1.1s" repeatCount="indefinite" />
-    </rect>
-    <!-- Bar 3 -->
-    <rect x="16" y="90" width="4" height="15" rx="2" fill="#10b981">
-      <animate attributeName="height" values="15;45;20;55;15" dur="1.3s" repeatCount="indefinite" />
-      <animate attributeName="y" values="90;60;85;50;90" dur="1.3s" repeatCount="indefinite" />
-    </rect>
-    <!-- Bar 4 -->
-    <rect x="24" y="55" width="4" height="50" rx="2" fill="#10b981">
-      <animate attributeName="height" values="50;25;55;15;50" dur="1.2s" repeatCount="indefinite" />
-      <animate attributeName="y" values="55;80;50;90;55" dur="1.2s" repeatCount="indefinite" />
-    </rect>
-    <!-- Bar 5 -->
-    <rect x="32" y="75" width="4" height="30" rx="2" fill="#10b981">
-      <animate attributeName="height" values="30;60;10;40;30" dur="1.4s" repeatCount="indefinite" />
-      <animate attributeName="y" values="75;45;95;65;75" dur="1.4s" repeatCount="indefinite" />
-    </rect>
-  </g>
+  <!-- Bottom Stats line -->
+  <text x="400" y="152" text-anchor="middle" class="stats-text">LEVEL {level}  •  {repos} REPOSITORIES</text>
 </svg>"""
 
     with open("id_badge.svg", "w", encoding="utf-8") as f:
@@ -114,6 +77,7 @@ def generate_badge():
 
 if __name__ == "__main__":
     generate_badge()
+
 
 
 
