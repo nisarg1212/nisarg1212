@@ -1,8 +1,9 @@
 <div align="center">
 
-  <img src="id_badge.svg" width="100%" alt="Sci-Fi ID Badge" />
+  <img src="id_badge.svg" width="100%" alt="Developer Profile Terminal" />
 
-<div align="center">
+  <br/>
+
   <a href="https://nisarg.is-a.dev" target="_blank">
     <img src="https://img.shields.io/badge/Portfolio-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="Portfolio" />
   </a>
@@ -12,9 +13,6 @@
   <a href="mailto:nisargbhatt48@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
   </a>
-</div>
-
-<br/>
 
 </div>
 

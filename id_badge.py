@@ -1,6 +1,5 @@
 import urllib.request
 import json
-import random
 import datetime
 
 def generate_badge():
@@ -11,76 +10,101 @@ def generate_badge():
         with urllib.request.urlopen(req) as response:
             user_data = json.loads(response.read().decode())
     except Exception:
-        user_data = {"name": "Nisarg", "login": "nisarg1212", "public_repos": 99, "followers": 42}
+        user_data = {"name": "Nisarg Bhatt", "login": "nisarg1212", "public_repos": 99, "followers": 42}
 
-    # Level math
+    # Maintain the original level math
     level = (user_data.get("public_repos", 0) * 10) + user_data.get("followers", 0) + 1200
     
     name = user_data.get('name', 'Nisarg Bhatt')
-    if not name: name = "Nisarg"
+    if not name: name = "Nisarg Bhatt"
     
-    # Hex/Timestamp details
-    now = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-    
-    barcode_svg = ""
-    x = 640
-    random.seed(42) 
-    for _ in range(15):
-        w = random.randint(1, 4)
-        barcode_svg += f'<rect x="{x}" y="160" width="{w}" height="40" fill="#00ffcc" opacity="0.8"/>\n'
-        x += w + random.randint(2, 4)
-
-    svg = f"""<svg width="800" height="250" viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg">
+    svg = f"""<svg width="800" height="340" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="glow">
-        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-        <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-        </feMerge>
+    <!-- Glowing shadow and style definitions -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.6"/>
     </filter>
-    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-        <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#cbd5e1" stroke-width="0.5" stroke-opacity="0.03"/>
-    </pattern>
+    <style>
+      .shell-prompt {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #10b981; font-weight: bold; }}
+      .shell-cmd {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #f8fafc; }}
+      .json-bracket {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #cbd5e1; }}
+      .json-key {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #f43f5e; font-weight: bold; }}
+      .json-val {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #34d399; }}
+      .json-num {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #fb923c; }}
+      .json-colon {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #94a3b8; }}
+    </style>
   </defs>
 
-  <!-- Background -->
-  <rect width="800" height="250" fill="#030712" rx="10" />
-  <rect width="800" height="250" fill="url(#grid)" rx="10" />
+  <!-- Terminal Window Shadow/Container -->
+  <rect x="15" y="15" width="770" height="310" rx="10" fill="#090d16" stroke="#1e293b" stroke-width="1.5" filter="url(#shadow)" />
+
+  <!-- Window Header -->
+  <path d="M 15 25 A 10 10 0 0 1 25 15 L 775 15 A 10 10 0 0 1 785 25 L 785 50 L 15 50 Z" fill="#111827" />
   
-  <!-- Frame Brackets (Sci-Fi Targeting UI) -->
-  <path d="M 25 55 L 25 25 L 55 25" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
-  <path d="M 775 55 L 775 25 L 745 25" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
-  <path d="M 25 195 L 25 225 L 55 225" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
-  <path d="M 775 195 L 775 225 L 745 225" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
-
-  <!-- Decorative Hex / Coordinates -->
-  <text x="35" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SYS.INIT. {now}</text>
-  <text x="640" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SEC-CLR: Lvl {level} // V.1.0</text>
-
-  <!-- Main Data Display -->
-  <text x="60" y="80" font-family="'Courier New', monospace" font-size="14" fill="#00ffcc" font-weight="bold" letter-spacing="2" filter="url(#glow)">>_ UPLINK ESTABLISHED</text>
+  <!-- Window Controls (macOS style) -->
+  <circle cx="40" cy="32" r="6" fill="#ef4444" />
+  <circle cx="58" cy="32" r="6" fill="#f59e0b" />
+  <circle cx="76" cy="32" r="6" fill="#10b981" />
   
-  <text x="60" y="125" font-family="'Courier New', monospace" font-size="42" fill="#f8fafc" font-weight="bold" letter-spacing="4">{name.upper()}</text>
-  <text x="65" y="155" font-family="'Courier New', monospace" font-size="16" fill="#94a3b8" letter-spacing="3">PROBLEM SOLVER | PROGRAMMER</text>
+  <!-- Terminal Title -->
+  <text x="400" y="37" font-family="'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="bold">nisarg@github: ~</text>
 
-  <!-- Connecting Lines -->
-  <line x1="65" y1="180" x2="350" y2="180" stroke="#00ffcc" stroke-width="1" opacity="0.4" />
-  <circle cx="355" cy="180" r="3" fill="#00ffcc" filter="url(#glow)" />
+  <!-- Terminal Output Lines -->
+  <g transform="translate(40, 85)">
+    <!-- Command line -->
+    <text x="0" y="0">
+      <tspan class="shell-prompt">nisarg@github:~$ </tspan>
+      <tspan class="shell-cmd">curl -s https://api.github.com/users/nisarg1212</tspan>
+    </text>
 
-  <!-- Minimal Barcode Right -->
-  {barcode_svg}
-  
-  <!-- Side Data / Terminal readout -->
-  <text x="640" y="70" font-family="'Courier New', monospace" font-size="12" fill="#64748b">AUTH: VERIFIED</text>
-  <text x="640" y="90" font-family="'Courier New', monospace" font-size="12" fill="#64748b">NODE: {user_data.get('login', 'NISARG1212').upper()}</text>
-  <rect x="640" y="105" width="80" height="2" fill="#00ffcc" filter="url(#glow)" opacity="0.8" />
-  <rect x="725" y="105" width="10" height="2" fill="#00ffcc" filter="url(#glow)" opacity="0.8" />
-</svg>
-"""
+    <!-- JSON Output -->
+    <text x="0" y="22" class="json-bracket">{{</text>
+
+    <text x="20" y="44">
+      <tspan class="json-key">"name"</tspan><tspan class="json-colon">: </tspan><tspan class="json-val">"{name}"</tspan><tspan class="json-colon">,</tspan>
+    </text>
+    
+    <text x="20" y="66">
+      <tspan class="json-key">"role"</tspan><tspan class="json-colon">: </tspan><tspan class="json-val">"Backend Architect | Problem Solver"</tspan><tspan class="json-colon">,</tspan>
+    </text>
+
+    <text x="20" y="88">
+      <tspan class="json-key">"status"</tspan><tspan class="json-colon">: </tspan><tspan class="json-val">"Steaming Coffee ☕"</tspan><tspan class="json-colon">,</tspan>
+    </text>
+
+    <text x="20" y="110">
+      <tspan class="json-key">"metrics"</tspan><tspan class="json-colon">: </tspan><tspan class="json-bracket">{{</tspan>
+    </text>
+
+    <text x="40" y="132">
+      <tspan class="json-key">"level"</tspan><tspan class="json-colon">: </tspan><tspan class="json-num">{level}</tspan><tspan class="json-colon">,</tspan>
+    </text>
+
+    <text x="40" y="154">
+      <tspan class="json-key">"repositories"</tspan><tspan class="json-colon">: </tspan><tspan class="json-num">{user_data.get('public_repos', 0)}</tspan><tspan class="json-colon">,</tspan>
+    </text>
+
+    <text x="40" y="176">
+      <tspan class="json-key">"followers"</tspan><tspan class="json-colon">: </tspan><tspan class="json-num">{user_data.get('followers', 0)}</tspan>
+    </text>
+
+    <text x="20" y="198" class="json-bracket">}}</text>
+
+    <text x="0" y="220" class="json-bracket">}}</text>
+
+    <!-- New shell prompt line with blinking cursor -->
+    <text x="0" y="242">
+      <tspan class="shell-prompt">nisarg@github:~$ </tspan>
+    </text>
+    <rect x="135" y="229" width="8" height="15" fill="#10b981">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+    </rect>
+  </g>
+</svg>"""
 
     with open("id_badge.svg", "w", encoding="utf-8") as f:
         f.write(svg)
 
 if __name__ == "__main__":
     generate_badge()
+
