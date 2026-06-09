@@ -21,25 +21,10 @@
   <!-- Window Header -->
   <path d="M 15 25 A 10 10 0 0 1 25 15 L 775 15 A 10 10 0 0 1 785 25 L 785 50 L 15 50 Z" fill="#111827" />
   
-<<<<<<< HEAD
   <!-- Window Controls (macOS style) -->
   <circle cx="40" cy="32" r="6" fill="#ef4444" />
   <circle cx="58" cy="32" r="6" fill="#f59e0b" />
   <circle cx="76" cy="32" r="6" fill="#10b981" />
-=======
-  <!-- Frame Brackets (Sci-Fi Targeting UI) -->
-  <path d="M 25 55 L 25 25 L 55 25" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
-  <path d="M 775 55 L 775 25 L 745 25" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
-  <path d="M 25 195 L 25 225 L 55 225" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
-  <path d="M 775 195 L 775 225 L 745 225" fill="none" stroke="#00ffcc" stroke-width="2" filter="url(#glow)"/>
-
-  <!-- Decorative Hex / Coordinates -->
-  <text x="35" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SYS.INIT. 2026-06-09T17:21:02Z</text>
-  <text x="640" y="218" font-family="'Courier New', monospace" font-size="10" fill="#475569">SEC-CLR: Lvl 1470 // V.1.0</text>
-
-  <!-- Main Data Display -->
-  <text x="60" y="80" font-family="'Courier New', monospace" font-size="14" fill="#00ffcc" font-weight="bold" letter-spacing="2" filter="url(#glow)">>_ UPLINK ESTABLISHED</text>
->>>>>>> 86e93206097a7ef18f680d5264cecf2e4c62bff4
   
   <!-- Terminal Title -->
   <text x="400" y="37" font-family="'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="bold">nisarg@github: ~</text>
