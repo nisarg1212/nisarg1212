@@ -1,53 +1,64 @@
-<svg width="800" height="180" viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Radial Gradients with drifting animations -->
-    <radialGradient id="orb-blue" cx="30%" cy="40%" r="60%">
-      <animate attributeName="cx" values="30%;45%;30%" dur="14s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="40%;60%;40%" dur="14s" repeatCount="indefinite" />
-      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.22" />
-      <stop offset="100%" stop-color="#2563eb" stop-opacity="0" />
-    </radialGradient>
+    <!-- Background Linear Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
 
-    <radialGradient id="orb-violet" cx="70%" cy="60%" r="60%">
-      <animate attributeName="cx" values="70%;55%;70%" dur="18s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="60%;40%;60%" dur="18s" repeatCount="indefinite" />
-      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.22" />
-      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0" />
-    </radialGradient>
-
-    <radialGradient id="orb-indigo" cx="50%" cy="50%" r="50%">
-      <animate attributeName="cx" values="50%;60%;50%" dur="22s" repeatCount="indefinite" />
-      <animate attributeName="cy" values="50%;30%;50%" dur="22s" repeatCount="indefinite" />
-      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.18" />
-      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0" />
-    </radialGradient>
+    <!-- Glowing Orb Blur -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
 
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&amp;display=swap');
-      .card-bg { fill: #030712; stroke: #1e293b; stroke-width: 1.2; }
-      .name-text { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 34px; font-weight: 800; fill: #ffffff; letter-spacing: 2px; }
-      .title-text { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 13px; font-weight: 500; fill: #22d3ee; letter-spacing: 3px; opacity: 0.95; }
-      .stats-text { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #475569; letter-spacing: 2px; }
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap');
+      .name-text { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 34px; font-weight: 800; fill: #ffffff; letter-spacing: -0.5px; }
+      .tagline-text { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 15px; font-weight: 500; fill: #22d3ee; letter-spacing: 0.5px; opacity: 0.95; }
+      .status-pill { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 10px; font-weight: 700; fill: #10b981; letter-spacing: 1.5px; }
+      .sub-text { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #475569; letter-spacing: 2px; }
     </style>
   </defs>
 
-  <!-- Card Background -->
-  <rect width="800" height="180" rx="10" class="card-bg" />
+  <!-- Background Rect -->
+  <rect width="800" height="200" fill="url(#bg-grad)" rx="10" />
 
-  <!-- Ambient Pulsing Orbs -->
-  <rect width="800" height="180" fill="url(#orb-blue)" rx="10" />
-  <rect width="800" height="180" fill="url(#orb-violet)" rx="10" />
-  <rect width="800" height="180" fill="url(#orb-indigo)" rx="10" />
+  <!-- Ambient Glowing Orbs in the Background -->
+  <circle cx="700" cy="50" r="80" fill="#06b6d4" opacity="0.15" filter="url(#glow)" />
+  <circle cx="100" cy="180" r="100" fill="#4f46e5" opacity="0.15" filter="url(#glow)" />
 
-  <!-- Centered Typographic Info -->
-  <g transform="translate(400, 85)">
-    <!-- Name -->
-    <text x="0" y="-5" text-anchor="middle" class="name-text">NISARG BHATT</text>
+  <!-- Animated Wave 1 (Back wave, slower) -->
+  <path d="M 0 160 Q 200 130, 400 160 T 800 160 L 800 200 L 0 200 Z" fill="#1e293b" opacity="0.3">
+    <animate attributeName="d" 
+             values="M 0 160 Q 200 130, 400 160 T 800 160 L 800 200 L 0 200 Z;
+                     M 0 160 Q 200 185, 400 160 T 800 160 L 800 200 L 0 200 Z;
+                     M 0 160 Q 200 130, 400 160 T 800 160 L 800 200 L 0 200 Z" 
+             dur="12s" repeatCount="indefinite" />
+  </path>
+
+  <!-- Animated Wave 2 (Front wave, faster) -->
+  <path d="M 0 170 Q 200 185, 400 170 T 800 170 L 800 200 L 0 200 Z" fill="#0f172a" opacity="0.6">
+    <animate attributeName="d" 
+             values="M 0 170 Q 200 185, 400 170 T 800 170 L 800 200 L 0 200 Z;
+                     M 0 170 Q 200 155, 400 170 T 800 170 L 800 200 L 0 200 Z;
+                     M 0 170 Q 200 185, 400 170 T 800 170 L 800 200 L 0 200 Z" 
+             dur="8s" repeatCount="indefinite" />
+  </path>
+
+  <!-- Left Side content -->
+  <g transform="translate(50, 0)">
+    <!-- Status Indicator -->
+    <text x="0" y="55" class="status-pill">● ACTIVE DEVELOPER</text>
     
-    <!-- Title -->
-    <text x="0" y="26" text-anchor="middle" class="title-text">PROBLEM SOLVER  •  SOFTWARE ENGINEER</text>
+    <!-- Name -->
+    <text x="0" y="92" class="name-text">Nisarg Bhatt</text>
+    
+    <!-- Tagline -->
+    <text x="0" y="118" class="tagline-text">Backend Architect &amp; Software Engineer</text>
   </g>
 
-  <!-- Bottom Stats line -->
-  <text x="400" y="152" text-anchor="middle" class="stats-text">LEVEL 1470  •  27 REPOSITORIES</text>
+  <!-- Right Side content (aligned at y=55 to balance the status pill) -->
+  <text x="750" y="55" text-anchor="end" class="sub-text">LEVEL 1470  •  27 REPOSITORIES</text>
 </svg>
