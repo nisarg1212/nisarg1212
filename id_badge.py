@@ -1,6 +1,5 @@
 import urllib.request
 import json
-import datetime
 
 def generate_badge():
     url = "https://api.github.com/users/nisarg1212"
@@ -10,95 +9,52 @@ def generate_badge():
         with urllib.request.urlopen(req) as response:
             user_data = json.loads(response.read().decode())
     except Exception:
-        user_data = {"name": "Nisarg Bhatt", "login": "nisarg1212", "public_repos": 99, "followers": 42}
+        user_data = {"name": "Nisarg Bhatt", "login": "nisarg1212", "public_repos": 27, "followers": 0}
 
-    # Maintain the original level math
+    # Maintain original level math
     level = (user_data.get("public_repos", 0) * 10) + user_data.get("followers", 0) + 1200
     
     name = user_data.get('name', 'Nisarg Bhatt')
     if not name: name = "Nisarg Bhatt"
     
-    svg = f"""<svg width="800" height="340" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg">
+    svg = f"""<svg width="800" height="140" viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Glowing shadow and style definitions -->
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.6"/>
-    </filter>
     <style>
-      .shell-prompt {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #10b981; font-weight: bold; }}
-      .shell-cmd {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #f8fafc; }}
-      .json-bracket {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #cbd5e1; }}
-      .json-key {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #f43f5e; font-weight: bold; }}
-      .json-val {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #34d399; }}
-      .json-num {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #fb923c; }}
-      .json-colon {{ font-family: 'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace; font-size: 14px; fill: #94a3b8; }}
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
+      .card-bg {{ fill: #0b0f19; stroke: #1e293b; stroke-width: 1; }}
+      .name {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 26px; font-weight: 800; fill: #ffffff; letter-spacing: -0.5px; }}
+      .title {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 14px; font-weight: 500; fill: #94a3b8; }}
+      .status-text {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 11px; font-weight: 500; fill: #64748b; }}
+      .stat-num {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 24px; font-weight: 700; fill: #f8fafc; }}
+      .stat-label {{ font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 10px; font-weight: 600; fill: #475569; letter-spacing: 1px; }}
     </style>
   </defs>
 
-  <!-- Terminal Window Shadow/Container -->
-  <rect x="15" y="15" width="770" height="310" rx="10" fill="#090d16" stroke="#1e293b" stroke-width="1.5" filter="url(#shadow)" />
+  <!-- Card Background -->
+  <rect width="800" height="140" rx="8" class="card-bg" />
 
-  <!-- Window Header -->
-  <path d="M 15 25 A 10 10 0 0 1 25 15 L 775 15 A 10 10 0 0 1 785 25 L 785 50 L 15 50 Z" fill="#111827" />
+  <!-- Left Side: Profile & Role Info -->
+  <text x="40" y="55" class="name">{name}</text>
+  <text x="40" y="82" class="title">Backend Architect &amp; Software Engineer</text>
   
-  <!-- Window Controls (macOS style) -->
-  <circle cx="40" cy="32" r="6" fill="#ef4444" />
-  <circle cx="58" cy="32" r="6" fill="#f59e0b" />
-  <circle cx="76" cy="32" r="6" fill="#10b981" />
-  
-  <!-- Terminal Title -->
-  <text x="400" y="37" font-family="'Consolas', 'Fira Code', 'Monaco', 'Courier New', monospace" font-size="12" fill="#6b7280" text-anchor="middle" font-weight="bold">nisarg@github: ~</text>
+  <!-- Status Pill -->
+  <circle cx="45" cy="106" r="3.5" fill="#10b981" />
+  <text x="56" y="110" class="status-text">Active &amp; building new systems</text>
 
-  <!-- Terminal Output Lines -->
-  <g transform="translate(40, 85)">
-    <!-- Command line -->
-    <text x="0" y="0">
-      <tspan class="shell-prompt">nisarg@github:~$ </tspan>
-      <tspan class="shell-cmd">curl -s https://api.github.com/users/nisarg1212</tspan>
-    </text>
+  <!-- Divider -->
+  <line x1="510" y1="25" x2="510" y2="115" stroke="#1e293b" stroke-width="1.5" />
 
-    <!-- JSON Output -->
-    <text x="0" y="22" class="json-bracket">{{</text>
+  <!-- Right Side: Developer Stats -->
+  <!-- Level -->
+  <g transform="translate(540, 0)">
+    <text x="0" y="60" class="stat-num">{level}</text>
+    <text x="0" y="80" class="stat-label">SYSTEM LEVEL</text>
+  </g>
 
-    <text x="20" y="44">
-      <tspan class="json-key">"name"</tspan><tspan class="json-colon">: </tspan><tspan class="json-val">"{name}"</tspan><tspan class="json-colon">,</tspan>
-    </text>
-    
-    <text x="20" y="66">
-      <tspan class="json-key">"role"</tspan><tspan class="json-colon">: </tspan><tspan class="json-val">"Backend Architect | Problem Solver"</tspan><tspan class="json-colon">,</tspan>
-    </text>
-
-    <text x="20" y="88">
-      <tspan class="json-key">"status"</tspan><tspan class="json-colon">: </tspan><tspan class="json-val">"Steaming Coffee ☕"</tspan><tspan class="json-colon">,</tspan>
-    </text>
-
-    <text x="20" y="110">
-      <tspan class="json-key">"metrics"</tspan><tspan class="json-colon">: </tspan><tspan class="json-bracket">{{</tspan>
-    </text>
-
-    <text x="40" y="132">
-      <tspan class="json-key">"level"</tspan><tspan class="json-colon">: </tspan><tspan class="json-num">{level}</tspan><tspan class="json-colon">,</tspan>
-    </text>
-
-    <text x="40" y="154">
-      <tspan class="json-key">"repositories"</tspan><tspan class="json-colon">: </tspan><tspan class="json-num">{user_data.get('public_repos', 0)}</tspan><tspan class="json-colon">,</tspan>
-    </text>
-
-    <text x="40" y="176">
-      <tspan class="json-key">"followers"</tspan><tspan class="json-colon">: </tspan><tspan class="json-num">{user_data.get('followers', 0)}</tspan>
-    </text>
-
-    <text x="20" y="198" class="json-bracket">}}</text>
-
-    <text x="0" y="220" class="json-bracket">}}</text>
-
-    <!-- New shell prompt line with blinking cursor -->
-    <text x="0" y="242">
-      <tspan class="shell-prompt">nisarg@github:~$ </tspan>
-    </text>
-    <rect x="135" y="229" width="8" height="15" fill="#10b981">
-      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
-    </rect>
+  <!-- Repositories -->
+  <g transform="translate(670, 0)">
+    <text x="0" y="60" class="stat-num">{user_data.get('public_repos', 0)}</text>
+    <text x="0" y="80" class="stat-label">REPOSITORIES</text>
   </g>
 </svg>"""
 
@@ -107,4 +63,5 @@ def generate_badge():
 
 if __name__ == "__main__":
     generate_badge()
+
 
