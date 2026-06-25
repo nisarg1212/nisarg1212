@@ -1,7 +1,6 @@
 <div align="center">
-
-  <img src="id_badge.svg" width="100%" alt="Developer Profile Terminal" />
-
+  <h1 style="font-size: 3em; margin-bottom: 0;">Hi 👋, I'm Nisarg</h1>
+  <h3 style="font-weight: 300; color: #64748b; margin-top: 10px;">Problem Solver • Software Engineer</h3>
   <br/>
 
   <a href="https://nisarg.is-a.dev" target="_blank">
