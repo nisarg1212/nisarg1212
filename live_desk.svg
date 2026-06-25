@@ -40,6 +40,12 @@
   <rect x="130" y="190" width="35" height="40" rx="3" fill="#e2e8f0" />
   <path d="M165 200 C 175 200, 175 220, 165 220" stroke="#e2e8f0" stroke-width="4" fill="none" />
   
+  <path d="M140 180 Q 130 160 140 140 T 140 120" stroke="#cbd5e1" stroke-width="3" fill="none" opacity="0.6" >
+    <animate attributeName="d" values="M140 180 Q 130 160 140 140 T 140 120; M140 180 Q 150 160 140 140 T 140 120; M140 180 Q 130 160 140 140 T 140 120" dur="3s" repeatCount="indefinite"/>
+  </path>
+  <path d="M155 185 Q 145 165 155 145 T 155 125" stroke="#cbd5e1" stroke-width="3" fill="none" opacity="0.4" >
+    <animate attributeName="d" values="M155 185 Q 165 165 155 145 T 155 125; M155 185 Q 145 165 155 145 T 155 125; M155 185 Q 165 165 155 145 T 155 125" dur="4s" repeatCount="indefinite"/>
+  </path>
 
   <!-- Lamp -->
   <path d="M480 230 L 500 150" stroke="#475569" stroke-width="4" />
@@ -48,6 +54,6 @@
   <rect x="470" y="225" width="20" height="5" fill="#475569" />
 
   <!-- Info Text -->
-  <text x="580" y="20" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="end">Status Desk | Time: 10:36 PM IST</text>
-  
+  <text x="580" y="20" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="end">Status Desk | Time: 01:19 AM IST</text>
+  <text x="580" y="40" font-family="monospace" font-size="10" fill="#10b981" text-anchor="end">[Recently Committed ☕]</text>
 </svg>
