@@ -19,7 +19,7 @@
 
 ### 🚀 About Me
 
-I find interest in creative problem solving at scale.
+I enjoy exploring interesting ideas and turning them into real products.
 
 - 🔭 I’m currently working on **A system that acurately predicts your life after 5 years.**
 - 🌱 I’m constantly learning **More Python plus Advanced Backend Architecture & some AI concepts.**
