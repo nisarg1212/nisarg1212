@@ -43,8 +43,8 @@ I enjoy exploring interesting ideas and turning them into real products.
 
 | Project                                           | Description                                                                 | Tech Stack                     |
 | :------------------------------------------------ | :-------------------------------------------------------------------------- | :----------------------------- |
-| **[Worldperience02](https://worldperience.me)**   | A social platform for sharing experiences with global chat and communities. | `Django` `Python` `WebSockets` |
 | **[StackX](https://stackxapp.com)**               | Where finding right AI workflows and systems becomes easy.                  | `React` `Tailwind` `JSON`      |
+| **[Afterfiveyears.life](https://afterfiveyears.life)**   | A platform for analyzing and reflecting on your life desicions.  | `Django` `Python` `Django-restframework` |
 | **[Personal Portfolio](https://nisarg.is-a.dev)** | My personal digital garden showcasing my projects, skills, and journey.     | `React` `Vite` `CSS`           |
 
 ---
