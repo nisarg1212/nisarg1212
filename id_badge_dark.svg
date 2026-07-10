@@ -4,7 +4,6 @@
       @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;display=swap');
 
       .bg-card { fill: #0d1117; stroke: #30363d; stroke-width: 1px; rx: 8px; }
-      .header-bg { fill: #161b22; }
       .title-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 500; fill: #8b949e; }
       
       .ascii-text { font-family: 'Fira Code', monospace; font-size: 10px; fill: #94a3b8; white-space: pre; letter-spacing: 0.5px; }
@@ -15,6 +14,7 @@
       .key { fill: #ffa657; }
       .val { fill: #a5d6ff; }
       .separator { fill: #30363d; }
+      .separator-line { stroke: #30363d; }
 
       .cursor {
         animation: blink 1s step-start infinite;
@@ -29,12 +29,10 @@
     </filter>
   </defs>
   <rect width="648" height="308" x="1" y="1" class="bg-card" filter="url(#card-shadow)" />
-  <rect x="1" y="1" width="646" height="34" rx="7" class="header-bg" />
-  <rect x="1" y="20" width="646" height="15" class="header-bg" />
-  <circle cx="20" cy="18" r="5" fill="#ff5f56" />
-  <circle cx="36" cy="18" r="5" fill="#ffbd2e" />
-  <circle cx="52" cy="18" r="5" fill="#27c93f" />
-  <text x="325" y="22" class="title-text" text-anchor="middle">nisarg@terminal: ~</text>
+  <circle cx="20" cy="20" r="5" fill="#ff5f56" />
+  <circle cx="36" cy="20" r="5" fill="#ffbd2e" />
+  <circle cx="52" cy="20" r="5" fill="#27c93f" />
+  <text x="325" y="24" class="title-text" text-anchor="middle">nisarg@terminal: ~</text>
   <text x="20" y="65" class="ascii-text">
     <tspan x="20" dy="0">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</tspan>
     <tspan x="20" dy="11">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<tspan fill="#d9cc62">#</tspan><tspan fill="#ab9f55">*</tspan><tspan fill="#807440">=</tspan><tspan fill="#8c7a4c">=</tspan><tspan fill="#8c714d">=</tspan><tspan fill="#907a56">=</tspan><tspan fill="#a49260">+</tspan><tspan fill="#9b8767">+</tspan>&#160;<tspan fill="#dcc76e">#</tspan><tspan fill="#d9c660">#</tspan>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</tspan>
@@ -57,24 +55,25 @@
     <tspan x="20" dy="11">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<tspan fill="#e7d4d3">%</tspan><tspan fill="#eee0d5">%</tspan><tspan fill="#bbadb0">*</tspan><tspan fill="#b8aaac">*</tspan><tspan fill="#9a8b90">+</tspan><tspan fill="#544455">:</tspan><tspan fill="#a08e94">+</tspan><tspan fill="#d3c4c1">#</tspan><tspan fill="#c6b8b7">#</tspan><tspan fill="#bfb1af">#</tspan><tspan fill="#b4a6a4">*</tspan><tspan fill="#b1a3a2">*</tspan><tspan fill="#b2a4a2">*</tspan><tspan fill="#b6a8a6">*</tspan><tspan fill="#bbaeac">*</tspan></tspan>
     <tspan x="20" dy="11">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<tspan fill="#f1e5ba">%</tspan><tspan fill="#cec5ca">#</tspan><tspan fill="#a59ca3">*</tspan><tspan fill="#bcadb3">*</tspan><tspan fill="#ab9d9d">*</tspan><tspan fill="#625460">-</tspan><tspan fill="#5a4a59">-</tspan><tspan fill="#c7b6b3">#</tspan><tspan fill="#cbbebd">#</tspan><tspan fill="#c4b6b5">#</tspan><tspan fill="#b8aaa8">*</tspan><tspan fill="#b3a5a3">*</tspan><tspan fill="#b4a6a4">*</tspan><tspan fill="#b7a9a7">*</tspan><tspan fill="#bbaeac">*</tspan></tspan>
   </text>
+  <line x1="272" y1="50" x2="272" y2="285" class="separator-line" stroke-dasharray="3,3" stroke-width="1.5" />
   <text x="290" y="70" class="stats-text">
     <tspan x="290" dy="0"><tspan class="user">nisarg</tspan>@<tspan class="host">afterfiveyears.life</tspan>:~$ <tspan class="val">neofetch</tspan><tspan class="cursor">█</tspan></tspan>
     <tspan x="290" dy="14" class="separator">-------------------</tspan>
     <tspan x="290" dy="18"><tspan class="key">💻 OS</tspan>: <tspan class="val">Windows 11 / WSL</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">🌐 Host</tspan>: <tspan class="val">nisarg.is-a.dev</tspan></tspan>
-    <tspan x="290" dy="18"><tspan class="key">⏱️ Uptime</tspan>: <tspan class="val">2 yr(s), 2 mo(s), 20 day(s)</tspan></tspan>
+    <tspan x="290" dy="18"><tspan class="key">⏱️ Uptime</tspan>: <tspan class="val">2 yr(s), 2 mo(s), 21 day(s)</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">🐚 Shell</tspan>: <tspan class="val">zsh / powershell</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">📝 Editor</tspan>: <tspan class="val">Cursor / VS Code</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">🛠️ Tech</tspan>: <tspan class="val">Python, Django, FastAPI, React</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">📦 Repos</tspan>: <tspan class="val">22</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">👥 Followers</tspan>: <tspan class="val">0</tspan></tspan>
   </text>
-  <rect x="290" y="260" width="20" height="15" fill="#161b22" rx="2" />
-  <rect x="314" y="260" width="20" height="15" fill="#ff5f56" rx="2" />
-  <rect x="338" y="260" width="20" height="15" fill="#27c93f" rx="2" />
-  <rect x="362" y="260" width="20" height="15" fill="#ffbd2e" rx="2" />
-  <rect x="386" y="260" width="20" height="15" fill="#58a6ff" rx="2" />
-  <rect x="410" y="260" width="20" height="15" fill="#d370e3" rx="2" />
-  <rect x="434" y="260" width="20" height="15" fill="#38bdf8" rx="2" />
-  <rect x="458" y="260" width="20" height="15" fill="#8b949e" rx="2" />
+  <circle cx="290" cy="255" r="7" fill="#161b22" />
+  <circle cx="312" cy="255" r="7" fill="#ff5f56" />
+  <circle cx="334" cy="255" r="7" fill="#27c93f" />
+  <circle cx="356" cy="255" r="7" fill="#ffbd2e" />
+  <circle cx="378" cy="255" r="7" fill="#58a6ff" />
+  <circle cx="400" cy="255" r="7" fill="#d370e3" />
+  <circle cx="422" cy="255" r="7" fill="#38bdf8" />
+  <circle cx="444" cy="255" r="7" fill="#8b949e" />
 </svg>

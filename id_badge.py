@@ -133,7 +133,6 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
     if is_dark_mode:
         bg = "#0d1117"
         border = "#30363d"
-        header_bg = "#161b22"
         title = "#8b949e"
         text_primary = "#c9d1d9"
         ascii_fallback = "#94a3b8"
@@ -149,7 +148,6 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
     else:
         bg = "#ffffff"
         border = "#d0d7de"
-        header_bg = "#e3e8ec"
         title = "#57606a"
         text_primary = "#24292f"
         ascii_fallback = "#475569"
@@ -171,7 +169,6 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
       @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;display=swap');
 
       .bg-card {{ fill: {bg}; stroke: {border}; stroke-width: 1px; rx: 8px; }}
-      .header-bg {{ fill: {header_bg}; }}
       .title-text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 500; fill: {title}; }}
       
       .ascii-text {{ font-family: 'Fira Code', monospace; font-size: 10px; fill: {ascii_fallback}; white-space: pre; letter-spacing: 0.5px; }}
@@ -182,6 +179,7 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
       .key {{ fill: {key}; }}
       .val {{ fill: {val}; }}
       .separator {{ fill: {separator}; }}
+      .separator-line {{ stroke: {separator}; }}
 
       .cursor {{
         animation: blink 1s step-start infinite;
@@ -199,17 +197,13 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
     # Main Card
     svg_parts.append('  <rect width="648" height="308" x="1" y="1" class="bg-card" filter="url(#card-shadow)" />')
     
-    # Header bar
-    svg_parts.append('  <rect x="1" y="1" width="646" height="34" rx="7" class="header-bg" />')
-    svg_parts.append('  <rect x="1" y="20" width="646" height="15" class="header-bg" />')
+    # macOS window buttons (Floating)
+    svg_parts.append('  <circle cx="20" cy="20" r="5" fill="#ff5f56" />')
+    svg_parts.append('  <circle cx="36" cy="20" r="5" fill="#ffbd2e" />')
+    svg_parts.append('  <circle cx="52" cy="20" r="5" fill="#27c93f" />')
     
-    # macOS window buttons
-    svg_parts.append('  <circle cx="20" cy="18" r="5" fill="#ff5f56" />')
-    svg_parts.append('  <circle cx="36" cy="18" r="5" fill="#ffbd2e" />')
-    svg_parts.append('  <circle cx="52" cy="18" r="5" fill="#27c93f" />')
-    
-    # Title text
-    svg_parts.append('  <text x="325" y="22" class="title-text" text-anchor="middle">nisarg@terminal: ~</text>')
+    # Title text (Floating)
+    svg_parts.append(f'  <text x="325" y="24" class="title-text" text-anchor="middle">nisarg@terminal: ~</text>')
 
     # Left Column (Image / ASCII Art)
     svg_parts.append('  <text x="20" y="65" class="ascii-text">')
@@ -218,9 +212,11 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
         svg_parts.append(f'    <tspan x="20" dy="{dy}">{line}</tspan>')
     svg_parts.append('  </text>')
 
+    # Vertical Separator Line (Dashed)
+    svg_parts.append('  <line x1="272" y1="50" x2="272" y2="285" class="separator-line" stroke-dasharray="3,3" stroke-width="1.5" />')
+
     # Right Column (Stats)
     svg_parts.append('  <text x="290" y="70" class="stats-text">')
-    # Customized hostname prompt
     svg_parts.append('    <tspan x="290" dy="0"><tspan class="user">nisarg</tspan>@<tspan class="host">afterfiveyears.life</tspan>:~$ <tspan class="val">neofetch</tspan><tspan class="cursor">█</tspan></tspan>')
     svg_parts.append('    <tspan x="290" dy="14" class="separator">-------------------</tspan>')
     svg_parts.append(f'    <tspan x="290" dy="18"><tspan class="key">💻 OS</tspan>: <tspan class="val">Windows 11 / WSL</tspan></tspan>')
@@ -233,11 +229,11 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
     svg_parts.append(f'    <tspan x="290" dy="18"><tspan class="key">👥 Followers</tspan>: <tspan class="val">{followers}</tspan></tspan>')
     svg_parts.append('  </text>')
 
-    # Terminal Color blocks
+    # Terminal Color Beads (Circular)
     colors = [color_black, "#ff5f56", "#27c93f", "#ffbd2e", "#58a6ff", "#d370e3", "#38bdf8", color_white]
     for idx, color in enumerate(colors):
-        x = 290 + (idx * 24)
-        svg_parts.append(f'  <rect x="{x}" y="260" width="20" height="15" fill="{color}" rx="2" />')
+        cx = 290 + (idx * 22)
+        svg_parts.append(f'  <circle cx="{cx}" cy="255" r="7" fill="{color}" />')
 
     svg_parts.append('</svg>')
 
