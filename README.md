@@ -1,6 +1,9 @@
 <div align="center">
-  <h1 style="font-size: 3em; margin-bottom: 0;">Hi 👋, I'm Nisarg</h1>
-  <h3 style="font-weight: 300; color: #64748b; margin-top: 10px;">Problem Solver • Software Engineer</h3>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="id_badge_dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="id_badge_light.svg">
+    <img src="id_badge_light.svg" width="100%" alt="Developer Profile Neofetch Terminal" />
+  </picture>
   <br/>
 
   <a href="https://nisarg.is-a.dev" target="_blank">
