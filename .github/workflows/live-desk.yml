@@ -27,6 +27,8 @@ jobs:
 
       - name: Generate Sci-Fi ID Badge
         run: python id_badge.py
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Commit and Push Update
         run: |
