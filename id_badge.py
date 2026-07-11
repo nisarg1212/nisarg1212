@@ -18,7 +18,6 @@ def fetch_github_details():
     total_prs = 0
     total_issues = 0
     
-    # 1. Attempt GraphQL API if Token is available
     if token:
         try:
             headers = {
@@ -101,9 +100,8 @@ def fetch_github_details():
         except Exception as e:
             print("GraphQL connection exception, falling back to REST:", e)
 
-    # 2. Fallback REST API
+    # Fallback REST API
     try:
-        # User details
         user_url = "https://api.github.com/users/nisarg1212"
         req = urllib.request.Request(user_url, headers={'User-Agent': 'AntigravityAgent/1.0'})
         with urllib.request.urlopen(req) as response:
@@ -125,7 +123,6 @@ def fetch_github_details():
         public_repos = user_data.get('public_repos', public_repos)
         followers = user_data.get('followers', followers)
 
-        # Star count
         repos_url = "https://api.github.com/users/nisarg1212/repos?per_page=100"
         req_repos = urllib.request.Request(repos_url, headers={'User-Agent': 'AntigravityAgent/1.0'})
         with urllib.request.urlopen(req_repos) as response_repos:
@@ -133,7 +130,6 @@ def fetch_github_details():
         
         total_stars = sum(repo.get('stargazers_count', 0) for repo in repos_data)
         
-        # Approximate values for commits/PRs/issues
         total_commits = public_repos * 15 + 120
         total_prs = public_repos * 2 + 5
         total_issues = public_repos // 2
@@ -147,7 +143,7 @@ def fetch_github_details():
 
     return uptime_str, public_repos, followers, total_stars, total_commits, total_prs, total_issues
 
-def convert_image_to_ascii(image_path, is_dark_mode, width=55, height=26):
+def convert_image_to_ascii(image_path, is_dark_mode, width=45, height=21):
     if not os.path.exists(image_path):
         return []
     
@@ -211,69 +207,67 @@ def convert_image_to_ascii(image_path, is_dark_mode, width=55, height=26):
         return []
 
 def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commits, prs, issues):
-    ascii_art_lines = convert_image_to_ascii("123_edited.jpg", is_dark_mode, 55, 26)
+    # Width of 45, Height of 21 to align perfectly with the stats
+    ascii_art_lines = convert_image_to_ascii("123_edited.jpg", is_dark_mode, 45, 21)
 
     # Backup ASCII art if conversion fails
     if not ascii_art_lines:
         ascii_art_lines = [
-            "     _____________________________________________     ",
-            "    |.-------------------------------------------.|    ",
-            "    ||                                           ||    ",
-            "    ||                 &gt;_ hello                  ||    ",
-            "    ||                                           ||    ",
-            "    ||___________________________________________||    ",
-            "    /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\\    ",
-            "   /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\\   ",
-            "  /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.\\  ",
-            " /_________________________________________________\\ ",
-            "       \\___________________________________/           "
+            "     _____________________________________     ",
+            "    |.-----------------------------------.|    ",
+            "    ||                                   ||    ",
+            "    ||              &gt;_ hello              ||    ",
+            "    ||                                   ||    ",
+            "    ||___________________________________||    ",
+            "    /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\\    ",
+            "   /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\\   ",
+            "  /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\\  ",
+            " /_________________________________________\\ ",
+            "       \\___________________________/           "
         ]
 
     # Theme Specific Colors
     if is_dark_mode:
-        bg = "#0d1117"
+        bg = "#161b22"
         border = "#30363d"
-        title = "#8b949e"
-        text_primary = "#c9d1d9"
-        ascii_fallback = "#94a3b8"
+        ascii_fallback = "#8b949e"
         user = "#58a6ff"
         host = "#3fb950"
         key = "#ffa657"
         val = "#a5d6ff"
-        separator = "#30363d"
-        color_black = "#161b22"
+        separator = "#616e7f"
+        color_black = "#1f2937"
         color_white = "#8b949e"
-        shadow_color = "#000000"
-        shadow_opacity = "0.35"
     else:
-        bg = "#ffffff"
+        bg = "#f6f8fa"
         border = "#d0d7de"
-        title = "#57606a"
-        text_primary = "#24292f"
-        ascii_fallback = "#475569"
+        ascii_fallback = "#57606a"
         user = "#0969da"
         host = "#1a7f37"
         key = "#953800"
         val = "#0a3069"
-        separator = "#d0d7de"
+        separator = "#c2cfde"
         color_black = "#24292f"
         color_white = "#57606a"
-        shadow_color = "#000000"
-        shadow_opacity = "0.08"
 
     svg_parts = []
-    # Enlarged Canvas to 985px width and 530px height
+    # Enlarged Canvas to 985px width and 530px height (Exactly matching Andrew's dimensions)
     svg_parts.append('<svg width="985" height="530" viewBox="0 0 985 530" xmlns="http://www.w3.org/2000/svg">')
     
+    # Stylized definition section using Consolas fallback matching Andrew
     svg_parts.append(f'''  <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&amp;display=swap');
-
-      .bg-card {{ fill: {bg}; stroke: {border}; stroke-width: 1px; rx: 8px; }}
-      .title-text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 500; fill: {title}; }}
+      @font-face {{
+        src: local('Consolas'), local('Consolas Bold');
+        font-family: 'ConsolasFallback';
+        font-display: swap;
+        -webkit-size-adjust: 109%;
+        size-adjust: 109%;
+      }}
+      .bg-card {{ fill: {bg}; stroke: {border}; stroke-width: 1px; rx: 15px; }}
       
-      .ascii-text {{ font-family: 'Fira Code', monospace; font-size: 12px; fill: {ascii_fallback}; white-space: pre; letter-spacing: 0.5px; }}
-      .stats-text {{ font-family: 'Fira Code', monospace; font-size: 15px; fill: {text_primary}; }}
+      .ascii-text {{ font-family: 'ConsolasFallback', Consolas, monospace; font-size: 16px; fill: {ascii_fallback}; }}
+      .stats-text {{ font-family: 'ConsolasFallback', Consolas, monospace; font-size: 16px; fill: {ascii_fallback}; }}
       
       .user {{ fill: {user}; font-weight: bold; }}
       .host {{ fill: {host}; font-weight: bold; }}
@@ -283,57 +277,48 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
 
       .cursor {{
         animation: blink 1s step-start infinite;
-        fill: {text_primary};
+        fill: {ascii_fallback};
       }}
       @keyframes blink {{
         50% {{ opacity: 0; }}
       }}
     </style>
-    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="{shadow_color}" flood-opacity="{shadow_opacity}" />
-    </filter>
   </defs>''')
 
-    # Main Card
-    svg_parts.append('  <rect width="983" height="528" x="1" y="1" class="bg-card" filter="url(#card-shadow)" />')
+    # Main Card (Flat card window with rx=15)
+    svg_parts.append('  <rect width="983" height="528" x="1" y="1" class="bg-card" />')
     
-    # macOS window buttons (Floating)
-    svg_parts.append('  <circle cx="20" cy="20" r="5" fill="#ff5f56" />')
-    svg_parts.append('  <circle cx="36" cy="20" r="5" fill="#ffbd2e" />')
-    svg_parts.append('  <circle cx="52" cy="20" r="5" fill="#27c93f" />')
-    
-    # Title text (Floating)
-    svg_parts.append(f'  <text x="492" y="24" class="title-text" text-anchor="middle">nisarg@terminal: ~</text>')
-
-    # Left Column (Image / ASCII Art) - Scaled line-height dy to 15px to fit 26 lines cleanly
-    svg_parts.append('  <text x="30" y="70" class="ascii-text">')
+    # Left Column (ASCII Art)
+    # Starts at x=25, y=40, line height = 20px
+    svg_parts.append('  <text x="25" y="40" class="ascii-text">')
     for i, line in enumerate(ascii_art_lines):
-        dy = "0" if i == 0 else "15"
-        svg_parts.append(f'    <tspan x="30" dy="{dy}">{line}</tspan>')
+        dy = "0" if i == 0 else "20"
+        svg_parts.append(f'    <tspan x="25" dy="{dy}">{line}</tspan>')
     svg_parts.append('  </text>')
 
-    # Right Column (Stats) - shifted x to 460 to balance the 985px width
-    svg_parts.append('  <text x="460" y="75" class="stats-text">')
-    svg_parts.append('    <tspan x="460" dy="0"><tspan class="user">nisarg</tspan>@<tspan class="host">afterfiveyears.life</tspan>:~$ <tspan class="val">neofetch</tspan><tspan class="cursor">█</tspan></tspan>')
-    svg_parts.append('    <tspan x="460" dy="16" class="separator">-----------------------</tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">💻 OS</tspan>: <tspan class="val">Windows 11 / WSL</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">🌐 Host</tspan>: <tspan class="val">nisarg.is-a.dev</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">⏱️ Uptime</tspan>: <tspan class="val">{uptime}</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">🐚 Shell</tspan>: <tspan class="val">zsh / powershell</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">📝 Editor</tspan>: <tspan class="val">Cursor / VS Code</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">🛠️ Tech</tspan>: <tspan class="val">Python, Django, FastAPI, React</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">📦 Repos</tspan>: <tspan class="val">{repos} repositories</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">⭐ Stars</tspan>: <tspan class="val">{stars} earned</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">💾 Commits</tspan>: <tspan class="val">{commits} contributions</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">🚀 PRs</tspan>: <tspan class="val">{prs} merged</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="460" dy="24"><tspan class="key">👥 Followers</tspan>: <tspan class="val">{followers} followers</tspan></tspan>')
+    # Right Column (Stats)
+    # Starts at x=440, y=40, line height = 20px (Locked parallel alignment to ASCII art)
+    svg_parts.append('  <text x="440" y="40" class="stats-text">')
+    svg_parts.append('    <tspan x="440" dy="0"><tspan class="user">nisarg</tspan>@<tspan class="host">afterfiveyears.life</tspan>:~$ <tspan class="val">neofetch</tspan><tspan class="cursor">█</tspan></tspan>')
+    svg_parts.append('    <tspan x="440" dy="20" class="separator">-----------------------</tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">OS</tspan>: <tspan class="val">Windows 11 / WSL</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Host</tspan>: <tspan class="val">nisarg.is-a.dev</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Uptime</tspan>: <tspan class="val">{uptime}</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Shell</tspan>: <tspan class="val">zsh / powershell</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Editor</tspan>: <tspan class="val">Cursor / VS Code</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Tech</tspan>: <tspan class="val">Python, Django, FastAPI, React</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Repos</tspan>: <tspan class="val">{repos} public repositories</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Stars</tspan>: <tspan class="val">{stars} earned</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Commits</tspan>: <tspan class="val">{commits} contributions</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">PRs</tspan>: <tspan class="val">{prs} merged</tspan></tspan>')
+    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Followers</tspan>: <tspan class="val">{followers} followers</tspan></tspan>')
     svg_parts.append('  </text>')
 
-    # Terminal Color Beads (Circular, scaled up to r=8, y=440 to match height)
+    # Terminal Color Beads (Circular, matching the 20px grid spacing perfectly)
     colors = [color_black, "#ff5f56", "#27c93f", "#ffbd2e", "#58a6ff", "#d370e3", "#38bdf8", color_white]
     for idx, color in enumerate(colors):
-        cx = 460 + (idx * 28)
-        svg_parts.append(f'  <circle cx="{cx}" cy="430" r="8" fill="{color}" />')
+        cx = 440 + (idx * 28)
+        svg_parts.append(f'  <circle cx="{cx}" cy="340" r="8" fill="{color}" />')
 
     svg_parts.append('</svg>')
 
