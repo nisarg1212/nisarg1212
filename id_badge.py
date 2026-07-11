@@ -4,13 +4,46 @@ import datetime
 import os
 import base64
 import requests
+import calendar
 from PIL import Image, ImageEnhance
+
+def calculate_age():
+    # User's birthdate: December 12, 2004
+    birthdate = datetime.datetime(2004, 12, 12)
+    now = datetime.datetime.now()
+    
+    years = now.year - birthdate.year
+    if (now.month, now.day) < (birthdate.month, birthdate.day):
+        years -= 1
+    
+    # Calculate last birthday date
+    last_birthday_year = now.year if (now.month, now.day) >= (birthdate.month, birthdate.day) else now.year - 1
+    last_birthday = datetime.datetime(last_birthday_year, birthdate.month, birthdate.day)
+    
+    # Calculate calendar months since last birthday
+    temp_date = last_birthday
+    months = 0
+    while True:
+        next_month_year = temp_date.year + (temp_date.month // 12)
+        next_month = (temp_date.month % 12) + 1
+        
+        # Handle calendar month-end variations (e.g., Feb 30th)
+        last_day_of_next_month = calendar.monthrange(next_month_year, next_month)[1]
+        target_day = min(birthdate.day, last_day_of_next_month)
+        next_date = datetime.datetime(next_month_year, next_month, target_day)
+        
+        if next_date > now:
+            break
+        temp_date = next_date
+        months += 1
+        
+    days = (now - temp_date).days
+    return f"{years} yr(s), {months} mo(s), {days} day(s)"
 
 def fetch_github_details():
     token = os.environ.get('ACCESS_TOKEN')
     
     # Defaults in case of failures
-    uptime_str = "2 years, 2 months"
     public_repos = 22
     followers = 0
     total_stars = 0
@@ -27,7 +60,6 @@ def fetch_github_details():
             query = """
             query($login: String!) {
               user(login: $login) {
-                createdAt
                 followers {
                   totalCount
                 }
@@ -67,20 +99,6 @@ def fetch_github_details():
                 else:
                     data = resp_json.get('data', {}).get('user', {})
                     if data:
-                        # Calculate Uptime
-                        created_at_str = data.get('createdAt')
-                        if created_at_str:
-                            created_at = datetime.datetime.strptime(created_at_str, "%Y-%m-%dT%H:%M:%SZ")
-                            now = datetime.datetime.now(datetime.timezone.utc)
-                            created_at = created_at.replace(tzinfo=datetime.timezone.utc)
-                            diff = now - created_at
-                            
-                            years = diff.days // 365
-                            remaining_days = diff.days % 365
-                            months = remaining_days // 30
-                            days = remaining_days % 30
-                            uptime_str = f"{years} yr(s), {months} mo(s), {days} day(s)"
-                        
                         followers = data.get('followers', {}).get('totalCount', 0)
                         
                         repos_data = data.get('repositories', {})
@@ -94,7 +112,7 @@ def fetch_github_details():
                         total_commits = contrib.get('totalCommitContributions', 0) + contrib.get('restrictedContributionsCount', 0)
                         
                         print("GraphQL statistics loaded successfully!")
-                        return uptime_str, public_repos, followers, total_stars, total_commits, total_prs, total_issues
+                        return public_repos, followers, total_stars, total_commits, total_prs, total_issues
             else:
                 print(f"GraphQL query returned status {response.status_code}: {response.text}")
         except Exception as e:
@@ -102,23 +120,13 @@ def fetch_github_details():
 
     # Fallback REST API
     try:
+        public_repos = 22
+        followers = 0
+
         user_url = "https://api.github.com/users/nisarg1212"
         req = urllib.request.Request(user_url, headers={'User-Agent': 'AntigravityAgent/1.0'})
         with urllib.request.urlopen(req) as response:
             user_data = json.loads(response.read().decode())
-        
-        created_at_str = user_data.get('created_at')
-        if created_at_str:
-            created_at = datetime.datetime.strptime(created_at_str, "%Y-%m-%dT%H:%M:%SZ")
-            now = datetime.datetime.now(datetime.timezone.utc)
-            created_at = created_at.replace(tzinfo=datetime.timezone.utc)
-            diff = now - created_at
-            
-            years = diff.days // 365
-            remaining_days = diff.days % 365
-            months = remaining_days // 30
-            days = remaining_days % 30
-            uptime_str = f"{years} yr(s), {months} mo(s), {days} day(s)"
         
         public_repos = user_data.get('public_repos', public_repos)
         followers = user_data.get('followers', followers)
@@ -141,7 +149,7 @@ def fetch_github_details():
         total_prs = public_repos * 2 + 5
         total_issues = public_repos // 2
 
-    return uptime_str, public_repos, followers, total_stars, total_commits, total_prs, total_issues
+    return public_repos, followers, total_stars, total_commits, total_prs, total_issues
 
 def convert_image_to_ascii(image_path, is_dark_mode, width=36, height=25):
     if not os.path.exists(image_path):
@@ -296,7 +304,6 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
     svg_parts.append('  </text>')
 
     # Right Column (Stats)
-    # Target length of details lines is set to 58 characters (so total line length with '. ' is 60).
     svg_parts.append(f'  <text x="390" y="30" fill="{ascii_fallback}">')
     svg_parts.append(f'    <tspan x="390" y="30"><tspan class="user">nisarg</tspan>@<tspan class="host">1212</tspan></tspan> -———————————————————————————————————————————-—-')
     
@@ -353,7 +360,8 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
         f.write("\n".join(svg_parts))
 
 def main():
-    uptime, repos, followers, stars, commits, prs, issues = fetch_github_details()
+    uptime = calculate_age()
+    repos, followers, stars, commits, prs, issues = fetch_github_details()
     generate_svg("id_badge_light.svg", False, uptime, repos, followers, stars, commits, prs, issues)
     generate_svg("id_badge_dark.svg", True, uptime, repos, followers, stars, commits, prs, issues)
 
