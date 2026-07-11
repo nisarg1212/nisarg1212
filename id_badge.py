@@ -210,10 +210,30 @@ def convert_image_to_ascii(image_path, is_dark_mode, width=36, height=25):
         print("Error converting image:", e)
         return []
 
+def justify_dots_and_val(key_str, value_str, total_line_len):
+    """
+    Returns the dot leaders and value formatted to make the line exactly total_line_len long.
+    This guarantees right-alignment for values.
+    """
+    if isinstance(value_str, int):
+        value_str = f"{'{:,}'.format(value_str)}"
+    value_str = str(value_str)
+    
+    # prefix length is len(key_str) + 1 (for ":")
+    prefix_len = len(key_str) + 1
+    dots_count = total_line_len - prefix_len - len(value_str)
+    
+    if dots_count <= 2:
+        dot_map = {0: '', 1: ' ', 2: '. '}
+        dots_str = dot_map[max(0, dots_count)]
+    else:
+        dots_str = ' ' + ('.' * (dots_count - 2)) + ' '
+        
+    return f'<tspan class="cc">{dots_str}</tspan><tspan class="value">{value_str}</tspan>'
+
 def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commits, prs, issues):
     ascii_art_lines = convert_image_to_ascii("123_edited.jpg", is_dark_mode, 36, 25)
 
-    # Backup ASCII art if conversion fails
     if not ascii_art_lines:
         ascii_art_lines = [f"<tspan>ASCII Fallback Line {i}</tspan>" for i in range(25)]
 
@@ -221,7 +241,7 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
     if is_dark_mode:
         bg = "#161b22"
         border = "#30363d"
-        ascii_fallback = "#c9d1d9"
+        ascii_fallback = "#8b949e"
         user = "#58a6ff"
         host = "#3fb950"
         key = "#ffa657"
@@ -236,21 +256,6 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
         key = "#953800"
         val = "#0a3069"
         separator = "#c2cfde"
-
-    # Precise Dots Alignment calculation:
-    # We target Column 26 for the colon/dots alignment to make everything uniform.
-    def get_dots_tspan(label, target_col=26):
-        dots_count = target_col - len(label) - 1
-        dots_str = "." * dots_count
-        return f'<tspan class="cc"> .{dots_str} </tspan>'
-
-    # GitHub Stats Alignment formatting (fixed widths)
-    repos_padded = f"{repos}".ljust(4)
-    commits_padded = f"{commits}".ljust(4)
-    prs_padded = f"{prs}".ljust(4)
-    stars_padded = f"{stars}".ljust(4)
-    followers_padded = f"{followers}".ljust(4)
-    issues_padded = f"{issues}".ljust(4)
 
     svg_parts = []
     svg_parts.append('<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="530px" font-size="16px">')
@@ -267,7 +272,9 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
       .key {{ fill: {key}; }}
       .value {{ fill: {val}; }}
       .cc {{ fill: {separator}; }}
-      text, tspan {{ white-space: pre; }}
+      text, tspan {{
+        white-space: pre;
+      }}
     </style>
   </defs>''')
 
@@ -282,39 +289,51 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
     svg_parts.append('  </text>')
 
     # Right Column (Stats)
+    # Target length of details lines is set to 58 characters (so total line length with '. ' is 60).
     svg_parts.append(f'  <text x="390" y="30" fill="{ascii_fallback}">')
     svg_parts.append(f'    <tspan x="390" y="30"><tspan class="user">nisarg</tspan>@<tspan class="host">1212</tspan></tspan> -———————————————————————————————————————————-—-')
     
-    # Details Row with dynamically aligned dot leaders
-    svg_parts.append(f'    <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:{get_dots_tspan("OS")}<tspan class="value">Windows 11 / WSL</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:{get_dots_tspan("Uptime")}<tspan class="value">{uptime}</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:{get_dots_tspan("Host")}<tspan class="value">nisarg.is-a.dev</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:{get_dots_tspan("Kernel")}<tspan class="value">AI | Software Engineer</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:{get_dots_tspan("IDE")}<tspan class="value">VS Code</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:{justify_dots_and_val("OS", "Windows 11 / WSL", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:{justify_dots_and_val("Uptime", uptime, 58)}')
+    svg_parts.append(f'    <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:{justify_dots_and_val("Host", "nisarg.is-a.dev", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:{justify_dots_and_val("Kernel", "AI | Software Engineer", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:{justify_dots_and_val("IDE", "VS Code", 58)}')
     svg_parts.append(f'    <tspan x="390" y="150" class="cc">. </tspan>')
     
-    svg_parts.append(f'    <tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:{get_dots_tspan("Languages.Programming")}<tspan class="value">Python, Django, DRF, SQL</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:{get_dots_tspan("Languages.Computer")}<tspan class="value">HTML, CSS, JSON, YAML, Bash</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:{get_dots_tspan("Languages.Real")}<tspan class="value">English, Hindi, Gujarati</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:{justify_dots_and_val("Languages.Programming", "Python, Django, DRF, SQL", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:{justify_dots_and_val("Languages.Computer", "HTML, CSS, JSON, YAML, Bash", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:{justify_dots_and_val("Languages.Real", "English, Hindi, Gujarati", 58)}')
     svg_parts.append(f'    <tspan x="390" y="230" class="cc">. </tspan>')
     
-    svg_parts.append(f'    <tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:{get_dots_tspan("Hobbies.Software")}<tspan class="value">Problem Solving, System Design</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Real</tspan>:{get_dots_tspan("Hobbies.Real")}<tspan class="value">running, philosophy, Chess</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:{justify_dots_and_val("Hobbies.Software", "Problem Solving, System Design", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Real</tspan>:{justify_dots_and_val("Hobbies.Real", "running, philosophy, Chess", 58)}')
     svg_parts.append(f'    <tspan x="390" y="290" class="cc">. </tspan>')
     
     # Contact Details
     svg_parts.append(f'    <tspan x="390" y="310">- Contact</tspan> -——————————————————————————————————————————————-—-')
-    svg_parts.append(f'    <tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>:{get_dots_tspan("Email")}<tspan class="value">nisargbhatt48@gmail.com</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:{get_dots_tspan("LinkedIn")}<tspan class="value">nisarg1212</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Discord</tspan>:{get_dots_tspan("Discord")}<tspan class="value">nisarg.1212</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Website</tspan>:{get_dots_tspan("Website")}<tspan class="value">nisarg.is-a.dev</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>:{justify_dots_and_val("Email", "nisargbhatt48@gmail.com", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:{justify_dots_and_val("LinkedIn", "nisarg1212", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Discord</tspan>:{justify_dots_and_val("Discord", "nisarg.1212", 58)}')
+    svg_parts.append(f'    <tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Website</tspan>:{justify_dots_and_val("Website", "nisarg.is-a.dev", 58)}')
     svg_parts.append(f'    <tspan x="390" y="410" class="cc">. </tspan>')
     
-    # GitHub Stats with precise vertical line-ups
+    # GitHub Stats
+    # col1 has target length 25, col2 has target length 30
+    # Total stats line is: '. ' (2) + col1 (25) + ' | ' (3) + col2 (30) = 60 characters
     svg_parts.append(f'    <tspan x="390" y="430">- GitHub Stats</tspan> -—————————————————————————————————————————-—-')
-    svg_parts.append(f'    <tspan x="390" y="450" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> ........ </tspan><tspan class="value">{repos_padded}</tspan> | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">{stars_padded}</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ...... </tspan><tspan class="value">{commits_padded}</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">{followers_padded}</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="490" class="cc">. </tspan><tspan class="key">PRs</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">{prs_padded}</tspan> | <tspan class="key">Issues</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">{issues_padded}</tspan>')
+    
+    col1_repos = justify_dots_and_val("Repos", repos, 25)
+    col2_stars = justify_dots_and_val("Stars", stars, 30)
+    svg_parts.append(f'    <tspan x="390" y="450" class="cc">. </tspan>{col1_repos} | {col2_stars}')
+    
+    col1_commits = justify_dots_and_val("Commits", commits, 25)
+    col2_followers = justify_dots_and_val("Followers", followers, 30)
+    svg_parts.append(f'    <tspan x="390" y="470" class="cc">. </tspan>{col1_commits} | {col2_followers}')
+    
+    col1_prs = justify_dots_and_val("PRs", prs, 25)
+    col2_issues = justify_dots_and_val("Issues", issues, 30)
+    svg_parts.append(f'    <tspan x="390" y="490" class="cc">. </tspan>{col1_prs} | {col2_issues}')
+    
     svg_parts.append('  </text>')
 
     svg_parts.append('</svg>')

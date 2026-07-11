@@ -11,7 +11,9 @@
       .key { fill: #953800; }
       .value { fill: #0a3069; }
       .cc { fill: #c2cfde; }
-      text, tspan { white-space: pre; }
+      text, tspan {
+        white-space: pre;
+      }
     </style>
   </defs>
   <rect width="985px" height="530px" fill="#f6f8fa" rx="15" stroke="#d0d7de" stroke-width="1"/>
@@ -44,28 +46,28 @@
   </text>
   <text x="390" y="30" fill="#24292f">
     <tspan x="390" y="30"><tspan class="user">nisarg</tspan>@<tspan class="host">1212</tspan></tspan> -———————————————————————————————————————————-—-
-    <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">Windows 11 / WSL</tspan>
-    <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc"> .................... </tspan><tspan class="value">2 yr(s), 2 mo(s), 22 day(s)</tspan>
-    <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc"> ...................... </tspan><tspan class="value">nisarg.is-a.dev</tspan>
-    <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc"> .................... </tspan><tspan class="value">AI | Software Engineer</tspan>
-    <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc"> ....................... </tspan><tspan class="value">VS Code</tspan>
+    <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> ..................................... </tspan><tspan class="value">Windows 11 / WSL</tspan>
+    <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc"> ...................... </tspan><tspan class="value">2 yr(s), 2 mo(s), 22 day(s)</tspan>
+    <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc"> .................................... </tspan><tspan class="value">nisarg.is-a.dev</tspan>
+    <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc"> ........................... </tspan><tspan class="value">AI | Software Engineer</tspan>
+    <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc"> ............................................. </tspan><tspan class="value">VS Code</tspan>
     <tspan x="390" y="150" class="cc">. </tspan>
-    <tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc"> ..... </tspan><tspan class="value">Python, Django, DRF, SQL</tspan>
-    <tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc"> ........ </tspan><tspan class="value">HTML, CSS, JSON, YAML, Bash</tspan>
-    <tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> ............ </tspan><tspan class="value">English, Hindi, Gujarati</tspan>
+    <tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">Python, Django, DRF, SQL</tspan>
+    <tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">HTML, CSS, JSON, YAML, Bash</tspan>
+    <tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">English, Hindi, Gujarati</tspan>
     <tspan x="390" y="230" class="cc">. </tspan>
-    <tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">Problem Solving, System Design</tspan>
-    <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> .............. </tspan><tspan class="value">running, philosophy, Chess</tspan>
+    <tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc"> ......... </tspan><tspan class="value">Problem Solving, System Design</tspan>
+    <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">running, philosophy, Chess</tspan>
     <tspan x="390" y="290" class="cc">. </tspan>
     <tspan x="390" y="310">- Contact</tspan> -——————————————————————————————————————————————-—-
-    <tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>:<tspan class="cc"> ..................... </tspan><tspan class="value">nisargbhatt48@gmail.com</tspan>
-    <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:<tspan class="cc"> .................. </tspan><tspan class="value">nisarg1212</tspan>
-    <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc"> ................... </tspan><tspan class="value">nisarg.1212</tspan>
-    <tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Website</tspan>:<tspan class="cc"> ................... </tspan><tspan class="value">nisarg.is-a.dev</tspan>
+    <tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>:<tspan class="cc"> ........................... </tspan><tspan class="value">nisargbhatt48@gmail.com</tspan>
+    <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:<tspan class="cc"> ..................................... </tspan><tspan class="value">nisarg1212</tspan>
+    <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc"> ..................................... </tspan><tspan class="value">nisarg.1212</tspan>
+    <tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Website</tspan>:<tspan class="cc"> ................................. </tspan><tspan class="value">nisarg.is-a.dev</tspan>
     <tspan x="390" y="410" class="cc">. </tspan>
     <tspan x="390" y="430">- GitHub Stats</tspan> -—————————————————————————————————————————-—-
-    <tspan x="390" y="450" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> ........ </tspan><tspan class="value">22  </tspan> | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">0   </tspan>
-    <tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ...... </tspan><tspan class="value">450 </tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">0   </tspan>
-    <tspan x="390" y="490" class="cc">. </tspan><tspan class="key">PRs</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">49  </tspan> | <tspan class="key">Issues</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">11  </tspan>
+    <tspan x="390" y="450" class="cc">. </tspan><tspan class="cc"> ............... </tspan><tspan class="value">22</tspan> | <tspan class="cc"> ..................... </tspan><tspan class="value">0</tspan>
+    <tspan x="390" y="470" class="cc">. </tspan><tspan class="cc"> ............ </tspan><tspan class="value">450</tspan> | <tspan class="cc"> ................. </tspan><tspan class="value">0</tspan>
+    <tspan x="390" y="490" class="cc">. </tspan><tspan class="cc"> ................. </tspan><tspan class="value">49</tspan> | <tspan class="cc"> ................... </tspan><tspan class="value">11</tspan>
   </text>
 </svg>
