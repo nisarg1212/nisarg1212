@@ -14,7 +14,6 @@
       .key { fill: #ffa657; }
       .val { fill: #a5d6ff; }
       .separator { fill: #30363d; }
-      .separator-line { stroke: #30363d; }
 
       .cursor {
         animation: blink 1s step-start infinite;
@@ -55,13 +54,12 @@
     <tspan x="20" dy="11">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<tspan fill="#e7d4d3">%</tspan><tspan fill="#eee0d5">%</tspan><tspan fill="#bbadb0">*</tspan><tspan fill="#b8aaac">*</tspan><tspan fill="#9a8b90">+</tspan><tspan fill="#544455">:</tspan><tspan fill="#a08e94">+</tspan><tspan fill="#d3c4c1">#</tspan><tspan fill="#c6b8b7">#</tspan><tspan fill="#bfb1af">#</tspan><tspan fill="#b4a6a4">*</tspan><tspan fill="#b1a3a2">*</tspan><tspan fill="#b2a4a2">*</tspan><tspan fill="#b6a8a6">*</tspan><tspan fill="#bbaeac">*</tspan></tspan>
     <tspan x="20" dy="11">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<tspan fill="#f1e5ba">%</tspan><tspan fill="#cec5ca">#</tspan><tspan fill="#a59ca3">*</tspan><tspan fill="#bcadb3">*</tspan><tspan fill="#ab9d9d">*</tspan><tspan fill="#625460">-</tspan><tspan fill="#5a4a59">-</tspan><tspan fill="#c7b6b3">#</tspan><tspan fill="#cbbebd">#</tspan><tspan fill="#c4b6b5">#</tspan><tspan fill="#b8aaa8">*</tspan><tspan fill="#b3a5a3">*</tspan><tspan fill="#b4a6a4">*</tspan><tspan fill="#b7a9a7">*</tspan><tspan fill="#bbaeac">*</tspan></tspan>
   </text>
-  <line x1="272" y1="50" x2="272" y2="285" class="separator-line" stroke-dasharray="3,3" stroke-width="1.5" />
   <text x="290" y="70" class="stats-text">
     <tspan x="290" dy="0"><tspan class="user">nisarg</tspan>@<tspan class="host">afterfiveyears.life</tspan>:~$ <tspan class="val">neofetch</tspan><tspan class="cursor">█</tspan></tspan>
     <tspan x="290" dy="14" class="separator">-------------------</tspan>
     <tspan x="290" dy="18"><tspan class="key">💻 OS</tspan>: <tspan class="val">Windows 11 / WSL</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">🌐 Host</tspan>: <tspan class="val">nisarg.is-a.dev</tspan></tspan>
-    <tspan x="290" dy="18"><tspan class="key">⏱️ Uptime</tspan>: <tspan class="val">2 yr(s), 2 mo(s), 21 day(s)</tspan></tspan>
+    <tspan x="290" dy="18"><tspan class="key">⏱️ Uptime</tspan>: <tspan class="val">2 yr(s), 2 mo(s), 22 day(s)</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">🐚 Shell</tspan>: <tspan class="val">zsh / powershell</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">📝 Editor</tspan>: <tspan class="val">Cursor / VS Code</tspan></tspan>
     <tspan x="290" dy="18"><tspan class="key">🛠️ Tech</tspan>: <tspan class="val">Python, Django, FastAPI, React</tspan></tspan>

@@ -179,7 +179,6 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
       .key {{ fill: {key}; }}
       .val {{ fill: {val}; }}
       .separator {{ fill: {separator}; }}
-      .separator-line {{ stroke: {separator}; }}
 
       .cursor {{
         animation: blink 1s step-start infinite;
@@ -212,8 +211,6 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers):
         svg_parts.append(f'    <tspan x="20" dy="{dy}">{line}</tspan>')
     svg_parts.append('  </text>')
 
-    # Vertical Separator Line (Dashed)
-    svg_parts.append('  <line x1="272" y1="50" x2="272" y2="285" class="separator-line" stroke-dasharray="3,3" stroke-width="1.5" />')
 
     # Right Column (Stats)
     svg_parts.append('  <text x="290" y="70" class="stats-text">')
