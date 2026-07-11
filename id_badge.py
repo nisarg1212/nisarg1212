@@ -143,7 +143,7 @@ def fetch_github_details():
 
     return uptime_str, public_repos, followers, total_stars, total_commits, total_prs, total_issues
 
-def convert_image_to_ascii(image_path, is_dark_mode, width=45, height=21):
+def convert_image_to_ascii(image_path, is_dark_mode, width=36, height=25):
     if not os.path.exists(image_path):
         return []
     
@@ -151,14 +151,21 @@ def convert_image_to_ascii(image_path, is_dark_mode, width=45, height=21):
         img = Image.open(image_path)
         img = img.convert("RGB")
         
-        # Center-crop to square
         w, h = img.size
-        min_dim = min(w, h)
-        left = (w - min_dim) / 2
-        top = (h - min_dim) / 2
-        right = (w + min_dim) / 2
-        bottom = (h + min_dim) / 2
-        img = img.crop((left, top, right, bottom))
+        # Monospace font aspect ratio correction:
+        # Monospace chars are roughly 0.48 aspect ratio (width/height).
+        # To prevent stretching the face vertically, we crop to a 1.25 aspect ratio.
+        target_aspect = 1.25
+        if w / h > target_aspect:
+            new_w = int(h * target_aspect)
+            left = (w - new_w) / 2
+            top = 0
+            img = img.crop((left, top, left + new_w, h))
+        else:
+            new_h = int(w / target_aspect)
+            left = 0
+            top = (h - new_h) / 2
+            img = img.crop((left, top, w, top + new_h))
         
         # Get background color from top-left corner
         bg_color = img.getpixel((0, 0))
@@ -207,30 +214,18 @@ def convert_image_to_ascii(image_path, is_dark_mode, width=45, height=21):
         return []
 
 def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commits, prs, issues):
-    # Width of 45, Height of 21 to align perfectly with the stats
-    ascii_art_lines = convert_image_to_ascii("123_edited.jpg", is_dark_mode, 45, 21)
+    # Set to width=36, height=25 to match Andrew's grid
+    ascii_art_lines = convert_image_to_ascii("123_edited.jpg", is_dark_mode, 36, 25)
 
     # Backup ASCII art if conversion fails
     if not ascii_art_lines:
-        ascii_art_lines = [
-            "     _____________________________________     ",
-            "    |.-----------------------------------.|    ",
-            "    ||                                   ||    ",
-            "    ||              &gt;_ hello              ||    ",
-            "    ||                                   ||    ",
-            "    ||___________________________________||    ",
-            "    /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\\    ",
-            "   /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\\   ",
-            "  /.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\\  ",
-            " /_________________________________________\\ ",
-            "       \\___________________________/           "
-        ]
+        ascii_art_lines = [f"<tspan>ASCII Fallback Line {i}</tspan>" for i in range(25)]
 
     # Theme Specific Colors
     if is_dark_mode:
         bg = "#161b22"
         border = "#30363d"
-        ascii_fallback = "#8b949e"
+        ascii_fallback = "#c9d1d9"
         user = "#58a6ff"
         host = "#3fb950"
         key = "#ffa657"
@@ -241,7 +236,7 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
     else:
         bg = "#f6f8fa"
         border = "#d0d7de"
-        ascii_fallback = "#57606a"
+        ascii_fallback = "#24292f"
         user = "#0969da"
         host = "#1a7f37"
         key = "#953800"
@@ -251,10 +246,9 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
         color_white = "#57606a"
 
     svg_parts = []
-    # Enlarged Canvas to 985px width and 530px height (Exactly matching Andrew's dimensions)
-    svg_parts.append('<svg width="985" height="530" viewBox="0 0 985 530" xmlns="http://www.w3.org/2000/svg">')
+    # Width 985, Height 530
+    svg_parts.append('<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="530px" font-size="16px">')
     
-    # Stylized definition section using Consolas fallback matching Andrew
     svg_parts.append(f'''  <defs>
     <style>
       @font-face {{
@@ -264,61 +258,58 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
         -webkit-size-adjust: 109%;
         size-adjust: 109%;
       }}
-      .bg-card {{ fill: {bg}; stroke: {border}; stroke-width: 1px; rx: 15px; }}
-      
-      .ascii-text {{ font-family: 'ConsolasFallback', Consolas, monospace; font-size: 16px; fill: {ascii_fallback}; }}
-      .stats-text {{ font-family: 'ConsolasFallback', Consolas, monospace; font-size: 16px; fill: {ascii_fallback}; }}
-      
-      .user {{ fill: {user}; font-weight: bold; }}
-      .host {{ fill: {host}; font-weight: bold; }}
       .key {{ fill: {key}; }}
-      .val {{ fill: {val}; }}
-      .separator {{ fill: {separator}; }}
-
-      .cursor {{
-        animation: blink 1s step-start infinite;
-        fill: {ascii_fallback};
-      }}
-      @keyframes blink {{
-        50% {{ opacity: 0; }}
-      }}
+      .value {{ fill: {val}; }}
+      .cc {{ fill: {separator}; }}
+      text, tspan {{ white-space: pre; }}
     </style>
   </defs>''')
 
-    # Main Card (Flat card window with rx=15)
-    svg_parts.append('  <rect width="983" height="528" x="1" y="1" class="bg-card" />')
+  # Card Background (matching #161b22 / #f6f8fa)
+    svg_parts.append(f'  <rect width="985px" height="530px" fill="{bg}" rx="15" stroke="{border}" stroke-width="1"/>')
     
     # Left Column (ASCII Art)
-    # Starts at x=25, y=40, line height = 20px
-    svg_parts.append('  <text x="25" y="40" class="ascii-text">')
+    # Starts at x=15, y=30, line height = 20px (25 lines total)
+    svg_parts.append(f'  <text x="15" y="30" fill="{ascii_fallback}">')
     for i, line in enumerate(ascii_art_lines):
-        dy = "0" if i == 0 else "20"
-        svg_parts.append(f'    <tspan x="25" dy="{dy}">{line}</tspan>')
+        y_val = 30 + (i * 20)
+        svg_parts.append(f'    <tspan x="15" y="{y_val}">{line}</tspan>')
     svg_parts.append('  </text>')
 
     # Right Column (Stats)
-    # Starts at x=440, y=40, line height = 20px (Locked parallel alignment to ASCII art)
-    svg_parts.append('  <text x="440" y="40" class="stats-text">')
-    svg_parts.append('    <tspan x="440" dy="0"><tspan class="user">nisarg</tspan>@<tspan class="host">afterfiveyears.life</tspan>:~$ <tspan class="val">neofetch</tspan><tspan class="cursor">█</tspan></tspan>')
-    svg_parts.append('    <tspan x="440" dy="20" class="separator">-----------------------</tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">OS</tspan>: <tspan class="val">Windows 11 / WSL</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Host</tspan>: <tspan class="val">nisarg.is-a.dev</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Uptime</tspan>: <tspan class="val">{uptime}</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Shell</tspan>: <tspan class="val">zsh / powershell</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Editor</tspan>: <tspan class="val">Cursor / VS Code</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Tech</tspan>: <tspan class="val">Python, Django, FastAPI, React</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Repos</tspan>: <tspan class="val">{repos} public repositories</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Stars</tspan>: <tspan class="val">{stars} earned</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Commits</tspan>: <tspan class="val">{commits} contributions</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">PRs</tspan>: <tspan class="val">{prs} merged</tspan></tspan>')
-    svg_parts.append(f'    <tspan x="440" dy="20"><tspan class="key">Followers</tspan>: <tspan class="val">{followers} followers</tspan></tspan>')
+    # Starts at x=390, y=30, line height = 20px
+    svg_parts.append(f'  <text x="390" y="30" fill="{ascii_fallback}">')
+    svg_parts.append(f'    <tspan x="390" y="30"><tspan class="user">nisarg</tspan>@<tspan class="host">afterfiveyears.life</tspan></tspan> -———————————————————————————————————————————-—-')
+    svg_parts.append(f'    <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">Windows 11 / WSL</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc"> ...................... </tspan><tspan class="value">{uptime}</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc"> ............................. </tspan><tspan class="value">nisarg.is-a.dev</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc"> ...... </tspan><tspan class="value">Backend Architect | Software Engineer</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">Cursor, VS Code</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="150" class="cc">. </tspan>')
+    svg_parts.append(f'    <tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc"> ..... </tspan><tspan class="value">Python, Go, Django, React, SQL</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc"> ......... </tspan><tspan class="value">HTML, CSS, JSON, YAML, Bash</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> ......................... </tspan><tspan class="value">Gujarati, Hindi, English</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="230" class="cc">. </tspan>')
+    svg_parts.append(f'    <tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">Creative Problem Solving, System Design</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> ......................... </tspan><tspan class="value">Coffee Brewing, Chess</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="290" class="cc">. </tspan>')
+    svg_parts.append(f'    <tspan x="390" y="310">- Contact</tspan> -——————————————————————————————————————————————-—-')
+    svg_parts.append(f'    <tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>:<tspan class="cc"> ............................ </tspan><tspan class="value">nisargbhatt48@gmail.com</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:<tspan class="cc"> ................................. </tspan><tspan class="value">nisarg1212</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Website</tspan>:<tspan class="cc"> .......................... </tspan><tspan class="value">nisarg.is-a.dev</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="390" class="cc">. </tspan>')
+    svg_parts.append(f'    <tspan x="390" y="410" class="cc">. </tspan>')
+    svg_parts.append(f'    <tspan x="390" y="430">- GitHub Stats</tspan> -—————————————————————————————————————————-—-')
+    svg_parts.append(f'    <tspan x="390" y="450" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">{repos}</tspan> | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">{stars}</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">{commits}</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">{followers}</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="490" class="cc">. </tspan><tspan class="key">PRs</tspan>:<tspan class="cc"> ..................... </tspan><tspan class="value">{prs}</tspan> | <tspan class="key">Issues</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">{issues}</tspan>')
     svg_parts.append('  </text>')
 
-    # Terminal Color Beads (Circular, matching the 20px grid spacing perfectly)
+    # Terminal Color Beads (Circular, locked to bottom row at y=510)
     colors = [color_black, "#ff5f56", "#27c93f", "#ffbd2e", "#58a6ff", "#d370e3", "#38bdf8", color_white]
     for idx, color in enumerate(colors):
-        cx = 440 + (idx * 28)
-        svg_parts.append(f'  <circle cx="{cx}" cy="340" r="8" fill="{color}" />')
+        cx = 398 + (idx * 22)
+        svg_parts.append(f'  <circle cx="{cx}" cy="510" r="7" fill="{color}" />')
 
     svg_parts.append('</svg>')
 
