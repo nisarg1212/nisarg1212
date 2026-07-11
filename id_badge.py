@@ -152,9 +152,7 @@ def convert_image_to_ascii(image_path, is_dark_mode, width=36, height=25):
         img = img.convert("RGB")
         
         w, h = img.size
-        # Monospace font aspect ratio correction:
-        # Monospace chars are roughly 0.48 aspect ratio (width/height).
-        # To prevent stretching the face vertically, we crop to a 1.25 aspect ratio.
+        # Monospace font aspect ratio correction
         target_aspect = 1.25
         if w / h > target_aspect:
             new_w = int(h * target_aspect)
@@ -189,7 +187,7 @@ def convert_image_to_ascii(image_path, is_dark_mode, width=36, height=25):
             for x in range(width):
                 r, g, b = img.getpixel((x, y))
                 
-                # Dynamic background subtraction (distance threshold to corner color)
+                # Dynamic background subtraction
                 color_dist = ((r - bg_color[0])**2 + (g - bg_color[1])**2 + (b - bg_color[2])**2)**0.5
                 if color_dist < 45:
                     line_parts.append('&#160;') # transparent space
@@ -205,8 +203,7 @@ def convert_image_to_ascii(image_path, is_dark_mode, width=36, height=25):
                 elif char == "&": char = "&amp;"
                 elif char == " ": char = "&#160;"
                 
-                color_hex = f"#{r:02x}{g:02x}{b:02x}"
-                line_parts.append(f'<tspan fill="{color_hex}">{char}</tspan>')
+                line_parts.append(char)
             lines.append("".join(line_parts))
         return lines
     except Exception as e:
@@ -214,7 +211,6 @@ def convert_image_to_ascii(image_path, is_dark_mode, width=36, height=25):
         return []
 
 def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commits, prs, issues):
-    # Set to width=36, height=25 to match Andrew's grid
     ascii_art_lines = convert_image_to_ascii("123_edited.jpg", is_dark_mode, 36, 25)
 
     # Backup ASCII art if conversion fails
@@ -231,8 +227,6 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
         key = "#ffa657"
         val = "#a5d6ff"
         separator = "#616e7f"
-        color_black = "#1f2937"
-        color_white = "#8b949e"
     else:
         bg = "#f6f8fa"
         border = "#d0d7de"
@@ -242,11 +236,23 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
         key = "#953800"
         val = "#0a3069"
         separator = "#c2cfde"
-        color_black = "#24292f"
-        color_white = "#57606a"
+
+    # Precise Dots Alignment calculation:
+    # We target Column 26 for the colon/dots alignment to make everything uniform.
+    def get_dots_tspan(label, target_col=26):
+        dots_count = target_col - len(label) - 1
+        dots_str = "." * dots_count
+        return f'<tspan class="cc"> .{dots_str} </tspan>'
+
+    # GitHub Stats Alignment formatting (fixed widths)
+    repos_padded = f"{repos}".ljust(4)
+    commits_padded = f"{commits}".ljust(4)
+    prs_padded = f"{prs}".ljust(4)
+    stars_padded = f"{stars}".ljust(4)
+    followers_padded = f"{followers}".ljust(4)
+    issues_padded = f"{issues}".ljust(4)
 
     svg_parts = []
-    # Width 985, Height 530
     svg_parts.append('<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="530px" font-size="16px">')
     
     svg_parts.append(f'''  <defs>
@@ -265,11 +271,10 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
     </style>
   </defs>''')
 
-  # Card Background (matching #161b22 / #f6f8fa)
+    # Card Container
     svg_parts.append(f'  <rect width="985px" height="530px" fill="{bg}" rx="15" stroke="{border}" stroke-width="1"/>')
     
-    # Left Column (ASCII Art)
-    # Starts at x=15, y=30, line height = 20px (25 lines total)
+    # Left Column (Monochrome ASCII Art)
     svg_parts.append(f'  <text x="15" y="30" fill="{ascii_fallback}">')
     for i, line in enumerate(ascii_art_lines):
         y_val = 30 + (i * 20)
@@ -277,39 +282,40 @@ def generate_svg(filename, is_dark_mode, uptime, repos, followers, stars, commit
     svg_parts.append('  </text>')
 
     # Right Column (Stats)
-    # Starts at x=390, y=30, line height = 20px
     svg_parts.append(f'  <text x="390" y="30" fill="{ascii_fallback}">')
-    svg_parts.append(f'    <tspan x="390" y="30"><tspan class="user">nisarg</tspan>@<tspan class="host">afterfiveyears.life</tspan></tspan> -———————————————————————————————————————————-—-')
-    svg_parts.append(f'    <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">Windows 11 / WSL</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc"> ...................... </tspan><tspan class="value">{uptime}</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc"> ............................. </tspan><tspan class="value">nisarg.is-a.dev</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc"> ...... </tspan><tspan class="value">Backend Architect | Software Engineer</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">Cursor, VS Code</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="30"><tspan class="user">nisarg</tspan>@<tspan class="host">1212</tspan></tspan> -———————————————————————————————————————————-—-')
+    
+    # Details Row with dynamically aligned dot leaders
+    svg_parts.append(f'    <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:{get_dots_tspan("OS")}<tspan class="value">Windows 11 / WSL</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:{get_dots_tspan("Uptime")}<tspan class="value">{uptime}</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:{get_dots_tspan("Host")}<tspan class="value">nisarg.is-a.dev</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:{get_dots_tspan("Kernel")}<tspan class="value">AI | Software Engineer</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:{get_dots_tspan("IDE")}<tspan class="value">VS Code</tspan>')
     svg_parts.append(f'    <tspan x="390" y="150" class="cc">. </tspan>')
-    svg_parts.append(f'    <tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc"> ..... </tspan><tspan class="value">Python, Go, Django, React, SQL</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc"> ......... </tspan><tspan class="value">HTML, CSS, JSON, YAML, Bash</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> ......................... </tspan><tspan class="value">Gujarati, Hindi, English</tspan>')
+    
+    svg_parts.append(f'    <tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:{get_dots_tspan("Languages.Programming")}<tspan class="value">Python, Django, DRF, SQL</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:{get_dots_tspan("Languages.Computer")}<tspan class="value">HTML, CSS, JSON, YAML, Bash</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:{get_dots_tspan("Languages.Real")}<tspan class="value">English, Hindi, Gujarati</tspan>')
     svg_parts.append(f'    <tspan x="390" y="230" class="cc">. </tspan>')
-    svg_parts.append(f'    <tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">Creative Problem Solving, System Design</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> ......................... </tspan><tspan class="value">Coffee Brewing, Chess</tspan>')
+    
+    svg_parts.append(f'    <tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:{get_dots_tspan("Hobbies.Software")}<tspan class="value">Problem Solving, System Design</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Real</tspan>:{get_dots_tspan("Hobbies.Real")}<tspan class="value">running, philosophy, Chess</tspan>')
     svg_parts.append(f'    <tspan x="390" y="290" class="cc">. </tspan>')
+    
+    # Contact Details
     svg_parts.append(f'    <tspan x="390" y="310">- Contact</tspan> -——————————————————————————————————————————————-—-')
-    svg_parts.append(f'    <tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>:<tspan class="cc"> ............................ </tspan><tspan class="value">nisargbhatt48@gmail.com</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:<tspan class="cc"> ................................. </tspan><tspan class="value">nisarg1212</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Website</tspan>:<tspan class="cc"> .......................... </tspan><tspan class="value">nisarg.is-a.dev</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="390" class="cc">. </tspan>')
+    svg_parts.append(f'    <tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>:{get_dots_tspan("Email")}<tspan class="value">nisargbhatt48@gmail.com</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:{get_dots_tspan("LinkedIn")}<tspan class="value">nisarg1212</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Discord</tspan>:{get_dots_tspan("Discord")}<tspan class="value">nisarg.1212</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Website</tspan>:{get_dots_tspan("Website")}<tspan class="value">nisarg.is-a.dev</tspan>')
     svg_parts.append(f'    <tspan x="390" y="410" class="cc">. </tspan>')
+    
+    # GitHub Stats with precise vertical line-ups
     svg_parts.append(f'    <tspan x="390" y="430">- GitHub Stats</tspan> -—————————————————————————————————————————-—-')
-    svg_parts.append(f'    <tspan x="390" y="450" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">{repos}</tspan> | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">{stars}</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">{commits}</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">{followers}</tspan>')
-    svg_parts.append(f'    <tspan x="390" y="490" class="cc">. </tspan><tspan class="key">PRs</tspan>:<tspan class="cc"> ..................... </tspan><tspan class="value">{prs}</tspan> | <tspan class="key">Issues</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">{issues}</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="450" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> ........ </tspan><tspan class="value">{repos_padded}</tspan> | <tspan class="key">Stars</tspan>:<tspan class="cc"> ........... </tspan><tspan class="value">{stars_padded}</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc"> ...... </tspan><tspan class="value">{commits_padded}</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc"> ....... </tspan><tspan class="value">{followers_padded}</tspan>')
+    svg_parts.append(f'    <tspan x="390" y="490" class="cc">. </tspan><tspan class="key">PRs</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">{prs_padded}</tspan> | <tspan class="key">Issues</tspan>:<tspan class="cc"> .......... </tspan><tspan class="value">{issues_padded}</tspan>')
     svg_parts.append('  </text>')
-
-    # Terminal Color Beads (Circular, locked to bottom row at y=510)
-    colors = [color_black, "#ff5f56", "#27c93f", "#ffbd2e", "#58a6ff", "#d370e3", "#38bdf8", color_white]
-    for idx, color in enumerate(colors):
-        cx = 398 + (idx * 22)
-        svg_parts.append(f'  <circle cx="{cx}" cy="510" r="7" fill="{color}" />')
 
     svg_parts.append('</svg>')
 
