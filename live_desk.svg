@@ -1,8 +1,8 @@
 <svg width="600" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="screenGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
     </radialGradient>
     <filter id="shadow">
       <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
@@ -10,11 +10,11 @@
   </defs>
 
   <!-- Wall -->
-  <rect width="600" height="300" fill="#f4f4f5" />
+  <rect width="600" height="300" fill="#2c3e50" />
   
   <!-- Window -->
-  <rect x="350" y="40" width="180" height="120" rx="10" fill="#87CEEB" stroke="#475569" stroke-width="6" />
-  <circle cx="450" cy="80" r="20" fill="#FFD700" />
+  <rect x="350" y="40" width="180" height="120" rx="10" fill="#0f172a" stroke="#475569" stroke-width="6" />
+  <circle cx="450" cy="80" r="15" fill="#fef08a" /><circle cx="455" cy="75" r="15" fill="#0f172a" />
   <!-- Window Pane Lines -->
   <line x1="440" y1="40" x2="440" y2="160" stroke="#475569" stroke-width="4" />
   <line x1="350" y1="100" x2="530" y2="100" stroke="#475569" stroke-width="4" />
@@ -44,10 +44,10 @@
   <!-- Lamp -->
   <path d="M480 230 L 500 150" stroke="#475569" stroke-width="4" />
   <path d="M490 150 Q 500 130 510 150" fill="#cbd5e1" />
-  
+  <circle cx="500" cy="150" r="8" fill="#fef08a" filter="url(#shadow)" />
   <rect x="470" y="225" width="20" height="5" fill="#475569" />
 
   <!-- Info Text -->
-  <text x="580" y="20" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="end">Status Desk | Time: 05:52 PM IST</text>
+  <text x="580" y="20" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="end">Status Desk | Time: 06:54 PM IST</text>
   
 </svg>
